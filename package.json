@@ -1,0 +1,11 @@
+{
+  "name": "creative_coding",
+  "version": "0.1",
+  "main": "index.js",
+  "author": "jerome rigaud",
+  "license": "MIT",
+  "scripts": {
+    "clone_repo": "./cc_install_repo.sh",
+    "build": "./cc_build.sh"
+  }
+}
