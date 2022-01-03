@@ -23,16 +23,16 @@ if (is_dir($dir)) {
 
             while (($file_inside = readdir($dir_inside)) !== false) {
 
-              // copy repositories folders into dist
-              $cmd = "cd ./source && cp -r ./{$file} ../dist";
+              // copy repositories folders into dist: ./docs
+              $cmd = "cd ./source && cp -r ./{$file} ../docs";
               $cmd_result = shell_exec($cmd);
 
               // delete .git archive
-              $cmd = 'find ./dist \( -path "*/.git/*" -or -name ".git" \) -delete';
+              $cmd = 'find ./docs \( -path "*/.git/*" -or -name ".git" \) -delete';
               $cmd_result = shell_exec($cmd);              
 
               // create zip files to distribute an archive
-              $cmd = "cd ./dist && zip -r ./{$file}/{$file}.zip {$file}";
+              $cmd = "cd ./docs && zip -r ./{$file}/{$file}.zip {$file}";
               $cmd_result = shell_exec($cmd);
 
               // ceate content for index.html: links to page and zip, short description, etc.
@@ -121,7 +121,7 @@ if (is_dir($dir)) {
             $notes_file_content .= $default_footer;
 
           // save the file
-            file_put_contents('./dist/'.$file_name.'.html', $notes_file_content);
+            file_put_contents('./docs/'.$file_name.'.html', $notes_file_content);
             $notes_links .= "<a href='./{$file_name}.html'>{$file_name} [{$file_extension}]</a>";
 
         }
@@ -143,5 +143,5 @@ $index_content .= $default_footer;
 
 
 // create the index files
-file_put_contents('./dist/index.html', $index_content);
+file_put_contents('./docs/index.html', $index_content);
 ?>

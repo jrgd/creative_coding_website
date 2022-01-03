@@ -1,2 +1,0 @@
-- download and install MAMP to create a small and local web server
-- 

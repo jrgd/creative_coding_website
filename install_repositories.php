@@ -42,10 +42,6 @@ foreach($repositories_array as $single_repository) {
   echo $single_repository." : ";
   $cmd = "cd ./source && git clone {$single_repository}";
   $cmd_result = shell_exec($cmd);
-  // $latest_folder_name = trim(shell_exec('cd ./source && ls -t | head -1'));
-  // var_dump($latest_folder_name);
-  // $cmd = "cd ./source && cp -r ./{$latest_folder_name} ../dist";
-  // $cmd_result = shell_exec($cmd);
   echo $cmd_result."\n";
 }
 

@@ -1,1 +1,0 @@
-Draw letterforms using circles; export/save SVG file (SVG) 
