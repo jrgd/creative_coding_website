@@ -27,6 +27,10 @@ if (is_dir($dir)) {
               $cmd = "cd ./source && cp -r ./{$file} ../dist";
               $cmd_result = shell_exec($cmd);
 
+              // delete .git archive
+              $cmd = 'find ./dist \( -path "*/.git/*" -or -name ".git" \) -delete';
+              $cmd_result = shell_exec($cmd);              
+
               // create zip files to distribute an archive
               $cmd = "cd ./dist && zip -r ./{$file}/{$file}.zip {$file}";
               $cmd_result = shell_exec($cmd);
