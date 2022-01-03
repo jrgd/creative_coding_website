@@ -1,0 +1,21 @@
+div.square {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: 1px solid red;
+}
+
+div.square:hover{
+  background-color: red;
+}
+
+.filled {
+  background-color: red;
+}
+
+div#gui {
+  display: none;
+  position: absolute;
+  right: 10px;
+  border: 1px solid black;
+}

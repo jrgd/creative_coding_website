@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+}
+
+textarea#import_export {
+  width:50vw;
+  height: 50vh;
+  position: absolute;
+  left: 50vw;
+}
+
+div#container {
+  width:50vw;
+  height:50vh;
+  position: absolute;
+}
+div#sub_container_gui {
+  width:50vw;
+  height:50vh;
+  position: absolute;
+}
+
+
+#container div.single_square {
+  position: absolute;
+  border-right: 1px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220);
+  margin-left: -1px;
+  margin-top: -1px;
+  background-color: none;
+  /* //////////////////////////////////////// */
+
+}
+
+#sub_container_gui div.single_square {
+  position: absolute;
+  font-size: 9px;
+  text-align: center;
+  font-family: sans-serif;  
+}
+
+div.selected {
+  background-color: rgba(255, 0,0,0.3);
+  border: 1px dotted red;
+  padding: 2px;
+  margin: -4px 4px 4px -4px;
+}
+
+
+div.parsed {
+  background-color: rgba(0,255,0,0.3);
+  border: 1px dotted green;
+  padding: 2px;
+  margin: -4px 4px 4px -4px;
+}
+
+
+div.pixel_on {
+  /*background-color: black;*/
+  mix-blend-mode: multiply;
+}
+
+.white {
+  background-color: white;
+}
+.black {
+  background-color: black;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.magenta {
+  background-color: magenta;
+}
+.cyan {
+  background-color: cyan;
+}
