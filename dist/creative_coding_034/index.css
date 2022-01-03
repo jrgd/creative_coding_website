@@ -1,0 +1,11 @@
+div.single_square {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  position: absolute;
+  background-color: none;
+}
+
+div.selected {
+  background-color: black;
+}

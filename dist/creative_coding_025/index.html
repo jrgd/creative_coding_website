@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>basic div typeface</title>
+
+  <style type="text/css">
+    body {background-color: #010080;}
+    div.square {position: absolute; width: 20px; height: 20px; background-color: #ffff04; 
+      /*transform: rotate(0deg); border: 1px solid red;*/
+    }
+    div.r1 { top: 20px; }
+    div.r2 { top: 40px; }
+    div.r3 { top: 60px; }
+    div.r4 { top: 80px; }
+    div.r5 { top: 100px; }
+    div.r6 { top: 120px; }
+    div.r7 { top: 140px; }
+
+    div.c1 { left: 20px; }
+    div.c2 { left: 40px; }
+    div.c3 { left: 60px; }
+    div.c4 { left: 80px; }
+    div.c5 { left: 100px; }
+    div.c6 { left: 120px; }
+    div.c7 { left: 140px; }
+
+    .letter_A .r1.c1, .letter_A .r1.c2, .letter_A .r1.c5, .letter_A .r1.c6,
+    .letter_A .r2.c1, .letter_A .r2.c6,
+    .letter_A .r3.c3, .letter_A .r3.c4,
+    .letter_A .r4.c3, .letter_A .r4.c4,
+    .letter_A .r6.c3, .letter_A .r6.c4,
+    .letter_A .r7.c3, .letter_A .r7.c4 {background-color: #010080;}
+
+    .letter_B .r1.c6,
+    .letter_B .r2.c3, .letter_B .r2.c4,
+    .letter_B .r3.c3, .letter_B .r3.c4,
+    .letter_B .r4.c6,
+    .letter_B .r5.c3, .letter_B .r5.c4,
+    .letter_B .r6.c3, .letter_B .r6.c4,
+    .letter_B .r7.c6
+     {background-color: #010080;}
+
+     .letter_C .r1.c1, .letter_C .r1.c2, .letter_C .r1.c7,
+     .letter_C .r2.c1, .letter_C .r2.c4, .letter_C .r2.c5,
+     .letter_C .r3.c3, .letter_C .r3.c4, .letter_C .r3.c5, .letter_C .r3.c6, .letter_C .r3.c7,
+     .letter_C .r4.c3, .letter_C .r4.c4, .letter_C .r4.c5, .letter_C .r4.c6, .letter_C .r4.c7,
+     .letter_C .r5.c3, .letter_C .r5.c4, .letter_C .r5.c5, .letter_C .r5.c6, .letter_C .r5.c7,
+     .letter_C .r6.c1, .letter_C .r6.c4, .letter_C .r6.c5,
+     .letter_C .r7.c1, .letter_C .r7.c2, .letter_C .r7.c7
+      {background-color: #010080;}
+
+    .letter_A {position: absolute; top: 10px; left: 10px;}
+    .letter_B {position: absolute; top: 10px; left: 150px;}
+    .letter_C {position: absolute; top: 10px; left: 290px;}
+  </style>
+</head>
+<body>
+
+<div class='letter_A'>
+  <!-- line 1 -->
+  <div class='square r1 c1'></div>
+  <div class='square r1 c2'></div>
+  <div class='square r1 c3'></div>
+  <div class='square r1 c4'></div>
+  <div class='square r1 c5'></div>
+  <div class='square r1 c6'></div>
+
+  <!-- line 2 -->
+  <div class='square r2 c1'></div>
+  <div class='square r2 c2'></div>
+  <div class='square r2 c3'></div>
+  <div class='square r2 c4'></div>
+  <div class='square r2 c5'></div>
+  <div class='square r2 c6'></div>
+
+  <!-- line 3 -->
+  <div class='square r3 c1'></div>
+  <div class='square r3 c2'></div>
+  <div class='square r3 c3'></div>
+  <div class='square r3 c4'></div>
+  <div class='square r3 c5'></div>
+  <div class='square r3 c6'></div>
+
+  <!-- line 4 -->
+  <div class='square r4 c1'></div>
+  <div class='square r4 c2'></div>
+  <div class='square r4 c3'></div>
+  <div class='square r4 c4'></div>
+  <div class='square r4 c5'></div>
+  <div class='square r4 c6'></div>
+
+  <!-- line 1 -->
+  <div class='square r5 c1'></div>
+  <div class='square r5 c2'></div>
+  <div class='square r5 c3'></div>
+  <div class='square r5 c4'></div>
+  <div class='square r5 c5'></div>
+  <div class='square r5 c6'></div>
+
+  <!-- line 2 -->
+  <div class='square r6 c1'></div>
+  <div class='square r6 c2'></div>
+  <div class='square r6 c3'></div>
+  <div class='square r6 c4'></div>
+  <div class='square r6 c5'></div>
+  <div class='square r6 c6'></div>
+
+  <!-- line 3 -->
+  <div class='square r7 c1'></div>
+  <div class='square r7 c2'></div>
+  <div class='square r7 c3'></div>
+  <div class='square r7 c4'></div>
+  <div class='square r7 c5'></div>
+  <div class='square r7 c6'></div>
+</div>
+
+<div class='letter_B'>
+  <!-- line 1 -->
+  <div class='square r1 c1'></div>
+  <div class='square r1 c2'></div>
+  <div class='square r1 c3'></div>
+  <div class='square r1 c4'></div>
+  <div class='square r1 c5'></div>
+  <div class='square r1 c6'></div>
+
+  <!-- line 2 -->
+  <div class='square r2 c1'></div>
+  <div class='square r2 c2'></div>
+  <div class='square r2 c3'></div>
+  <div class='square r2 c4'></div>
+  <div class='square r2 c5'></div>
+  <div class='square r2 c6'></div>
+
+  <!-- line 3 -->
+  <div class='square r3 c1'></div>
+  <div class='square r3 c2'></div>
+  <div class='square r3 c3'></div>
+  <div class='square r3 c4'></div>
+  <div class='square r3 c5'></div>
+  <div class='square r3 c6'></div>
+
+  <!-- line 4 -->
+  <div class='square r4 c1'></div>
+  <div class='square r4 c2'></div>
+  <div class='square r4 c3'></div>
+  <div class='square r4 c4'></div>
+  <div class='square r4 c5'></div>
+  <div class='square r4 c6'></div>
+
+  <!-- line 1 -->
+  <div class='square r5 c1'></div>
+  <div class='square r5 c2'></div>
+  <div class='square r5 c3'></div>
+  <div class='square r5 c4'></div>
+  <div class='square r5 c5'></div>
+  <div class='square r5 c6'></div>
+
+  <!-- line 2 -->
+  <div class='square r6 c1'></div>
+  <div class='square r6 c2'></div>
+  <div class='square r6 c3'></div>
+  <div class='square r6 c4'></div>
+  <div class='square r6 c5'></div>
+  <div class='square r6 c6'></div>
+
+  <!-- line 3 -->
+  <div class='square r7 c1'></div>
+  <div class='square r7 c2'></div>
+  <div class='square r7 c3'></div>
+  <div class='square r7 c4'></div>
+  <div class='square r7 c5'></div>
+  <div class='square r7 c6'></div>
+</div>
+
+<div class='letter_C'>
+  <!-- line 1 -->
+  <div class='square r1 c1'></div>
+  <div class='square r1 c2'></div>
+  <div class='square r1 c3'></div>
+  <div class='square r1 c4'></div>
+  <div class='square r1 c5'></div>
+  <div class='square r1 c6'></div>
+  <div class='square r1 c7'></div>
+
+  <!-- line 2 -->
+  <div class='square r2 c1'></div>
+  <div class='square r2 c2'></div>
+  <div class='square r2 c3'></div>
+  <div class='square r2 c4'></div>
+  <div class='square r2 c5'></div>
+  <div class='square r2 c6'></div>
+  <div class='square r2 c7'></div>
+
+  <!-- line 3 -->
+  <div class='square r3 c1'></div>
+  <div class='square r3 c2'></div>
+  <div class='square r3 c3'></div>
+  <div class='square r3 c4'></div>
+  <div class='square r3 c5'></div>
+  <div class='square r3 c6'></div>
+  <div class='square r3 c7'></div>
+
+  <!-- line 4 -->
+  <div class='square r4 c1'></div>
+  <div class='square r4 c2'></div>
+  <div class='square r4 c3'></div>
+  <div class='square r4 c4'></div>
+  <div class='square r4 c5'></div>
+  <div class='square r4 c6'></div>
+  <div class='square r4 c7'></div>
+
+  <!-- line 1 -->
+  <div class='square r5 c1'></div>
+  <div class='square r5 c2'></div>
+  <div class='square r5 c3'></div>
+  <div class='square r5 c4'></div>
+  <div class='square r5 c5'></div>
+  <div class='square r5 c6'></div>
+  <div class='square r5 c7'></div>
+
+  <!-- line 2 -->
+  <div class='square r6 c1'></div>
+  <div class='square r6 c2'></div>
+  <div class='square r6 c3'></div>
+  <div class='square r6 c4'></div>
+  <div class='square r6 c5'></div>
+  <div class='square r6 c6'></div>
+  <div class='square r6 c7'></div>
+
+  <!-- line 3 -->
+  <div class='square r7 c1'></div>
+  <div class='square r7 c2'></div>
+  <div class='square r7 c3'></div>
+  <div class='square r7 c4'></div>
+  <div class='square r7 c5'></div>
+  <div class='square r7 c6'></div>
+  <div class='square r7 c7'></div>
+</div>
+
+</body>
+</html>

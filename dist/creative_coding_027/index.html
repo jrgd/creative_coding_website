@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ground ui work for a pixel drawing tool</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./index.js"></script>
+
+  <style type="text/css">
+  #canvas {
+    position: absolute;
+    top: 200px;
+  }  
+  #canvas .grid_cell {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+  }
+
+  .white{
+    background-color: white;
+  }
+  .black {
+    background-color: black;
+  }
+  </style>
+  
+
+</head>
+<body>
+
+  <div id='canvas'>
+    
+
+  </div>
+
+  <div id='controller_panel'>
+    
+    rows: <input class='c_rows_q' type='number' value='7' data-canvas_property='rows'>
+    columns:  <input class='c_cols_q'  type='number' value='5' data-canvas_property='columns'>
+    <a href='#' id='export'>Export</a>
+  </div>
+
+</body>
+</html>

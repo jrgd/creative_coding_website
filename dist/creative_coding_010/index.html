@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+
+  <!-- !META -->
+  <title>010</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+  <link href="special.css" rel="stylesheet" type="text/css">
+  
+  <style type="text/css" media="screen">
+    body {
+      background-color: black;
+    }
+
+    #signature_drawing {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 240px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #signature_container {
+      position: fixed;
+      top: 0;
+      left:0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+  </style>
+ 
+</head>
+<body>
+
+  <div id='signature_container'>
+    <canvas id="signature_drawing">
+    </canvas>
+  </div>
+
+</body>
+</html>
+
+
+<script>
+
+// SIGNATURE
+  function draw_signature(ctx, base_width, scale) {
+    var echoes = 0;
+    for (var ii = 1; ii < 24; ii = Math.floor(ii + base_width)) {
+      echoes++;
+      if (echoes % 2 === 0) {
+        ctx.fillStyle = '#000';
+      } else {
+        ctx.fillStyle = '#fff';
+      }
+      // fillrect x,y,w,h
+
+      // t vertical
+      ctx.fillRect(
+        Math.floor((47 + 3 + ii)*scale),
+        Math.floor((0 + ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47+3)*3+47-ii*2 -16)*scale)
+      );
+      // t horizontal
+      ctx.fillRect(
+        Math.floor((0 + ii)*scale),
+        Math.floor((47+3 + ii)*scale),
+        Math.ceil(((47*2+3) - ii*2)*scale),
+        Math.ceil((47 - ii*2)*scale)
+      );
+
+      // r vertical
+      ctx.fillRect(
+        Math.floor(((47+3)*2+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47+3)*2+47-ii*2 - 16)*scale)
+      );
+      // r horizontal
+      ctx.fillRect(
+        Math.floor(((47+3)*2+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil((47*2+3 - ii*2)*scale),
+        Math.ceil((47-ii*2)*scale)
+      );
+
+      // i dot
+      ctx.fillRect(
+        Math.floor(((47 + 3)*3 + ii)*scale),
+        Math.floor((0 + ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil((47-ii*2)*scale)
+      );
+      // i vertical bottom
+      ctx.fillRect(
+        Math.floor(((47 + 3)*3 + ii)*scale),
+        Math.floor(((47+3)*2 + ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47*2+3)-ii*2 -16)*scale)
+      );
+
+      // m
+      // left vertical
+      ctx.fillRect(
+        Math.floor(((47+3)*4+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47+3)*2+47-ii*2 -16)*scale)
+      );
+      // middle vertical
+      ctx.fillRect(
+        Math.floor(((47+3)*5+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47+3)*2+47-ii*2 -16)*scale)
+      );
+      // right vertical
+      ctx.fillRect(
+        Math.floor(((47+3)*6+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil((47 - ii*2)*scale),
+        Math.ceil(((47+3)*2+47-ii*2 -16)*scale)
+      );
+      // horizontal
+      ctx.fillRect(
+        Math.floor(((47+3)*4+ii)*scale),
+        Math.floor((47+3+ii)*scale),
+        Math.ceil(((47)*3+3*2 - ii*2)*scale),
+        Math.ceil((47-ii*2)*scale)
+      );
+    }
+  }
+
+  window.onload = window.onresize = function() {
+      var canvas = document.getElementById('signature_drawing');
+      canvas.width = window.innerWidth * 1;
+      canvas.height = window.innerHeight * 1;
+
+      var ctx = canvas.getContext("2d");
+      ctx.canvas.width  = 400;
+      ctx.canvas.height = 240;
+      draw_signature(ctx, 1,1);
+
+      canvas.onmousemove = function(e) {
+        var rect = e.target.getBoundingClientRect();
+        var base_width = rect.width / (e.clientX-rect.left);
+        draw_signature(ctx, base_width, 1);
+      }
+  }
+
+  
+  
+
+  </script>

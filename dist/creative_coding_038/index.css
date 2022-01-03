@@ -1,0 +1,6 @@
+#output div { width: 50px; height: 50px; border:0px solid black; color: transparent; font-family: courier new; font-size: 12px;}
+#output div:hover { color: black; }
+
+#controls { font-family: courier new; font-size: 12px; }
+#controls #palette { width: calc(100% - 20px); padding: 10px; border:1px solid black;margin-bottom: 10px;}
+#controls #palette div { width: 50px; height: 50px; display: inline-block;margin: 0;padding:0;}
