@@ -88,6 +88,7 @@ $dir = './source_notes';
 if (is_dir($dir)) {
   if ($dOP = opendir($dir)) {
     while (($file = readdir($dOP)) !== false) {
+      $page_content = '';
       if ($file != "."  && $file != ".DS_Store" && $file != "..") {
         if (is_dir($dir.'/'.$file)) {
           if ($dir_inside =  opendir($dir.'/'.$file)) {
