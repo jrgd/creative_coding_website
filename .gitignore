@@ -1,4 +1,6 @@
 source/
 source/*
+source_notes/
+source_notes/*
 vendor/
 node_modules/
