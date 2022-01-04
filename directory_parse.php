@@ -2,7 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Parsedown;
 $Parsedown = new Parsedown();
 
 
@@ -93,8 +92,40 @@ if (is_dir($dir)) {
         if (is_dir($dir.'/'.$file)) {
           if ($dir_inside =  opendir($dir.'/'.$file)) {
 
+            $cmd = "mkdir ./docs/{$file}";
+            $cmd_result = shell_exec($cmd);
+            $page_content .= $default_header;
+            $page_content .= $default_menu;
+
             while (($file_inside = readdir($dir_inside)) !== false) {
+              $file_extension_dot_pos = strrpos($file_inside, '.');
+              $file_extension = substr($file_inside, $file_extension_dot_pos+1);
+              switch ($file_extension) {
+                case 'md':
+                case 'txt':
+                case 'html':
+                  // code...
+                  $page_content .= file_get_contents($dir_inside.'/'.$file_inside);
+                  break;
+
+                case 'jpg':
+                case 'png':
+                case 'jpeg':
+                case 'gif':
+                  $source_path = $dir.'/'.$file;
+                  $cmd = "cp ./{$source_path}/{$file_inside} ./docs/{$file}/";
+                  $cmd_result = shell_exec($cmd);
+                  $page_content .= "<img src='./".$file."/".$file_inside."'>";
+                  break;
+
+                default:
+                  // code...
+                  break;
+              }
             }
+            $page_content .= $default_footer;
+            file_put_contents('./docs/'.$file.'.html', $page_content);
+            $notes_links .= "<a href='./{$file}.html'>{$file} [PAGE]</a><br>";
           }
         }
         if (is_file($dir.'/'.$file)) { // this is a file withibn the main source_notes directory
@@ -122,7 +153,7 @@ if (is_dir($dir)) {
 
           // save the file
             file_put_contents('./docs/'.$file_name.'.html', $notes_file_content);
-            $notes_links .= "<a href='./{$file_name}.html'>{$file_name} [{$file_extension}]</a>";
+            $notes_links .= "<a href='./{$file_name}.html'>{$file_name} [{$file_extension}]</a><br>";
 
         }
       }
