@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clone_repo": "./cc_install_repo.sh",
+    "clone_notes": "./cc_clone_notes.sh",
     "build": "./cc_build.sh"
   }
 }
