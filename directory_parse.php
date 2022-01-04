@@ -145,7 +145,7 @@ if (is_dir($dir)) {
           
 
             $file_name = substr($file, 0, $file_extension_dot_pos);
-
+            $notes_file_content = '';
           // concatenate content: add header and footer, the simple menu and the content
             $notes_file_content .= $default_header;
             $notes_file_content .= $default_menu;
