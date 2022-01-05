@@ -106,6 +106,7 @@ if (is_dir($dir)) {
 // generate notes.html
 $index_notes_content = "";
 $index_notes_content .= $default_header;
+$index_content .= $default_menu;
 $index_notes_content .= "<h2>Notes</h2>";
 $index_notes_content .= $notes_links;
 $index_notes_content .= $default_footer;
