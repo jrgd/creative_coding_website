@@ -1,2 +1,2 @@
 #!/bin/sh
-php directory_parse.php
+php cc_directory_parse.php
