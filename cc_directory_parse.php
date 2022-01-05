@@ -95,6 +95,7 @@ if (is_dir($dir)) {
 
             $cmd = "mkdir ./docs/{$file}";
             $cmd_result = shell_exec($cmd);
+            $page_content = "";
             $page_content .= $default_header;
             $page_content .= $default_menu;
 
@@ -147,6 +148,7 @@ if (is_dir($dir)) {
             $file_name = substr($file, 0, $file_extension_dot_pos);
 
           // concatenate content: add header and footer, the simple menu and the content
+            $notes_file_content = "";
             $notes_file_content .= $default_header;
             $notes_file_content .= $default_menu;
             $notes_file_content .= $text_content;
