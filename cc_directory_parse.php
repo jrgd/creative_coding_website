@@ -165,6 +165,7 @@ if (is_dir($dir)) {
 // generate index.html main entry (home) page
 $index_content = "";
 $index_content .= $default_header;
+$index_content .= $default_menu;
 $index_content .= "<h2>Notes</h2>";
 $index_content .= $notes_links;
 $index_content .= "<h2>Experiments</h2>";
@@ -176,4 +177,14 @@ $index_content .= $default_footer;
 
 // create the index files
 file_put_contents('./docs/index.html', $index_content);
+
+// generate notes.html
+$index_notes_content = "";
+$index_notes_content .= $default_header;
+$index_notes_content .= $default_menu;
+$index_notes_content .= "<h2>Notes</h2>";
+$index_notes_content .= $notes_links;
+$index_notes_content .= $default_footer;
+// create the index files
+file_put_contents('./docs/notes.html', $index_notes_content);
 ?>
