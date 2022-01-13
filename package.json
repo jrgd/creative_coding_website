@@ -8,6 +8,7 @@
     "clone_repo": "./cc_install_repo.sh",
     "clone_notes": "./cc_clone_notes.sh",
     "build_notes": "./cc_build_notes.sh",
-    "build": "./cc_build.sh"
+    "build": "./cc_build.sh",
+    "publishing": "./cc_publish.sh"
   }
 }
