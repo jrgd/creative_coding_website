@@ -6,10 +6,12 @@ https://creativecoding.xyz/
 ```yarn clone_repo```
   - will run cc_install_repo.sh
   - git clone wrapper; using an array of repositories selected for publishing
-  
+  :+todo it is suboptimal to install from scratch every time
+
 ```yarn clone_notes```
   - will run cc_clone_notes.sh
   - copy files from specific directory 
+  :+todo the clone and build steps are needed as separate entity but it's not very intuitive; it would be good to have a specific command to simply update the website with new notes
 
 ```yarn build_notes```
   - will run cc_build_notes.sh
