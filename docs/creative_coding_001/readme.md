@@ -14,7 +14,7 @@ Draw a parametric box with loops on X,Y (SVG)
 
 The polygons are now existing in the page.
 
-- Play with varaiables: what if we wanted to make them bigger or smaller.
+- Play with variables: what if we wanted to make them bigger or smaller.
 - How would you add more polygons?
 - How would you change the style of the boxes?
 - We want a (fake) isometric view; how would you do it?
