@@ -51,7 +51,7 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
-                $output_array[$file_number] = "<div class='image'><a href='{$file}/present.html'>$link_text</a> {$line} <a href='./{$file}/{$file}.zip'>[zip]</a> </div>"; // link to the experimetn itself: {$file_inside}
+                $output_array[$file_number] = "<div class='image'><a href='{$file}/present.html'>$link_text</a> {$line} [<a href='{$file_inside}'>view</a>, <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
                 $content_summary_array[$file_number] = "{$file} --- {$line} ";
 
                 // create a presentation page
@@ -59,9 +59,19 @@ if (is_dir($dir)) {
                 $presentation_data =$default_header;
                 $presentation_data .=$default_menu;
                 $presentation_data .= "<p>";
-                $presentation_data .= $Parsedown->text(file_get_contents("./source/{$file}/readme.md"));
+
+                $readme_content = file_get_contents("./source/{$file}/readme.md")
+                $search = [
+                  '<h1>Creative Coding / Visual Experiments</h1>',
+                  '<h2>an ongoing coding/research seminar</h2>',
+                  '<p><a href="http://creativecoding.xyz">http://creativecoding.xyz</a></p>',
+                ];
+                $replace = "";
+                $readme_content = str_replace($search, $replace, $readme_content);
+
+                $presentation_data .= $Parsedown->text($readme_content);
                 $presentation_data .= "<br>";
-                $presentation_data .= "<a href='{$file}/{$file_inside}'>Link</a>";
+                $presentation_data .= "<a href='{$file}/{$file_inside}'>Link: view the experiment</a>";
                 $presentation_data .= "</p>";
                 // insert code content in the page
                 if (file_exists("./source/{$file}/index.js")) {
