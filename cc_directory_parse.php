@@ -61,7 +61,7 @@ if (is_dir($dir)) {
                 $presentation_data .= "<p>";
                 $presentation_data .= $Parsedown->text(file_get_contents("./source/{$file}/readme.md"));
                 $presentation_data .= "<br>";
-                $presentation_data .= "<a href='./{$file_inside}'>Link</a>";
+                $presentation_data .= "<a href='{$file}/{$file_inside}'>Link</a>";
                 $presentation_data .= "</p>";
                 // insert code content in the page
                 if (file_exists("./source/{$file}/index.js")) {
