@@ -7,17 +7,14 @@
   <h1>Creative Coding / Visual Experiments</h1>
   <h2>an ongoing coding/research seminar</h2><div class='navigation'>
   <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
-</div>a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript
-
-```
-  # a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript
+</div><p><p>a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript</p>
+<pre><code>  # a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript
 
   set window_height to 1080
   set window_width to 1280 #2560
   set small_window_q to 4
   set small_window_width to window_width / small_window_q
   set small_window_height to window_height / 2
-
 
   tell application "Finder"
     open "Macintosh HD:Users:jrgd:Kanban:kanban_folders:todo"
@@ -43,6 +40,5 @@
   tell window "doing" of application "Finder" to set sidebar width to 0
   tell window "done" of application "Finder" to set sidebar width to 0
   tell window "kaizen" of application "Finder" to set sidebar width to 0
-  tell window "backburner" of application "Finder" to set sidebar width to 0
-```</body>
+  tell window "backburner" of application "Finder" to set sidebar width to 0</code></pre><br><a href='./index.html'>Link</a></p></body>
 </html>
