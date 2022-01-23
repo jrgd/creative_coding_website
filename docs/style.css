@@ -10,18 +10,28 @@
 }
 
 * {
-  font-size: 1.1rem;
   font-family: sans-serif;
   letter-spacing: 0.02em;
   color: white;
 }
 
 body {
+  font-size: 1rem;
   background-color: black;
 }
 
-h1 { margin: 0;
+h1 { 
+  margin: 0;
   padding: 0;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
 }
 
 hr { border: 0;
