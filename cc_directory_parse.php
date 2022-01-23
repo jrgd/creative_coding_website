@@ -62,9 +62,9 @@ if (is_dir($dir)) {
 
                 $readme_content = file_get_contents("./source/{$file}/readme.md");
                 $search = [
-                  '<h1>Creative Coding / Visual Experiments</h1>',
-                  '<h2>an ongoing coding/research seminar</h2>',
-                  '<p><a href="http://creativecoding.xyz">http://creativecoding.xyz</a></p>',
+                  '# Creative Coding / Visual Experiments',
+                  '## an ongoing coding/research seminar',
+                  '<http://creativecoding.xyz>',
                 ];
                 $replace = "";
                 $readme_content = str_replace($search, $replace, $readme_content);
