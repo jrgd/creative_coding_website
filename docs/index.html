@@ -1,78 +1,44 @@
 <head>
   <title>Creative Coding / Visual Experiments</title>
-  <style>
-    @media screen and (max-width: 414px) {
-      body {
-        margin:  0;
-      }
-    }
-    @media screen and (min-width: 414px) {
-      body {
-        margin:  0 10vw 0 10vw;
-      }
-    }
-
-    * {
-      font-size: 18px;
-      font-family: sans-serif;
-      letter-spacing: 0.02em;
-      background-color: black;
-      color: white;
-    }
-
-    h1 { margin: 0;
-      padding: 0;
-    }
-
-    hr { border: 0;
-      border-bottom: 1px solid white;
-      margin: 20px 0 20px 0;
-      padding: 0;
-    }
-
-    img {
-      max-width:  80vw;
-      display:  block;
-      margin: 0 auto 0 auto;
-    }
-  </style>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
   <h1>Creative Coding / Visual Experiments</h1>
   <h2>an ongoing coding/research seminar</h2><div class='navigation'>
   <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
-</div><h2>Notes</h2><a href='./resources.html'>resources [md]</a><br><a href='./creative_coding_archive.html'>creative_coding_archive [md]</a><br><a href='./generate_maze.html'>generate_maze [md]</a><br><a href='./3d_printed_print_making_blocks.html'>3d_printed_print_making_blocks [PAGE]</a><br><a href='./gradients.html'>gradients [PAGE]</a><br><h2>Experiments</h2><div class='image'><a href='creative_coding_001/index.html'>001</a> Draw a parametric box with loops on X,Y (SVG) <a href='./creative_coding_001/creative_coding_001.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_002/index.html'>002</a> Draw letterforms using circles; export/save SVG file (SVG) <a href='./creative_coding_002/creative_coding_002.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_003/index.html'>003</a> Draw a circle line by line (SVG) <a href='./creative_coding_003/creative_coding_003.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_005/index.html'>005</a> Drawing line by line with a repeated colour palette on HTML Canvas; adapted from 003. (Canvas)  <a href='./creative_coding_005/creative_coding_005.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_006/index.html'>006</a> No animation: the image is calculated and displayed in one go. Adapted from 005. (Canvas)  <a href='./creative_coding_006/creative_coding_006.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_010/index.html'>010</a> Reactive mouse hover Trim logotyype (Canvas)  <a href='./creative_coding_010/creative_coding_010.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_012/index.html'>012</a> Random lines in columns (SVG)  <a href='./creative_coding_012/creative_coding_012.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_013/index.html'>013</a> Random lines in columns, variation (SVG)  <a href='./creative_coding_013/creative_coding_013.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_014/index.html'>014</a> Random lines in columns, animated (SVG)  <a href='./creative_coding_014/creative_coding_014.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_022/index.html'>022</a> Drawing a faded rectangle, then drawing the same shape but moving the top-right point 10px to the right—over and over (SVG, loop) <a href='./creative_coding_022/creative_coding_022.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_024/index.html'>024</a> drawing: hover: css changes (colours, rotation) (SVG, CSS) <a href='./creative_coding_024/creative_coding_024.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_025/index.html'>025</a> basic div ABC typeface (HTML intro)  <a href='./creative_coding_025/creative_coding_025.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_026/index.html'>026</a> basic div chess board (HTML intro) <a href='./creative_coding_026/creative_coding_026.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_027/index.html'>027</a> ground ui work for a pixel drawing tool (jQuery, HTML) <a href='./creative_coding_027/creative_coding_027.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_029/index.html'>029</a> Simpler version of 027; introducing loops and variables (HTML, jQuery, CSS) <a href='./creative_coding_029/creative_coding_029.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_029b/index.html'>029b</a> (HTML + jQuery + CSS) simpler version of 027; introducing loops and variables <a href='./creative_coding_029b/creative_coding_029b.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_030/index.html'>030</a> simple SVG shapes with basic coordinates (SVG) <a href='./creative_coding_030/creative_coding_030.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_031/index.html'>031</a> simple SVG shapes with basic coordinates (SVG) <a href='./creative_coding_031/creative_coding_031.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_032/index.html'>032</a> Copy image to new image (lower resolution), then parse pixels colors from images and create svg (jquery, canvas, svg) <a href='./creative_coding_032/creative_coding_032.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_033/index.html'>033</a> keyboard input, basic template <a href='./creative_coding_033/creative_coding_033.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_034/index.html'>034</a> move a square within a parametric grid <a href='./creative_coding_034/creative_coding_034.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_035/index.html'>035</a> read data from text string <a href='./creative_coding_035/creative_coding_035.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_036/index.html'>036</a> move a square within a parametric grid: keyboard and mouse interactions; draw with pixel, brushes, lines <a href='./creative_coding_036/creative_coding_036.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_037/index.html'>037</a> Glitch: draw a line over an image usign the clicked pixel colour <a href='./creative_coding_037/creative_coding_037.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_038-NK/index.html'>038-NK</a> Gradients generator with steps and colour palette. <a href='./creative_coding_038-NK/creative_coding_038-NK.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_038/index.html'>038</a> Gradients generator with steps and colour palette. <a href='./creative_coding_038/creative_coding_038.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_039/index.html'>039</a> Copy current frame from a video into a canvas, every 1/30th of a sec (works in Chrome and Firefox, due to source file format) <a href='./creative_coding_039/creative_coding_039.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_040/index.html'>040</a> Glitch: draw a line over an image usign the clicked pixel colour <a href='./creative_coding_040/creative_coding_040.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_041/index.html'>041</a> Slitscan a video; extension of 039. Copy 20 pixels wide vertical band from a video every XXth seconds and paste it next to previous vertical bands in a Canvas image. <a href='./creative_coding_041/creative_coding_041.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_042/index.html'>042</a> Copy current frame from a video into a canvas, every 1/30th of a sec (works in Chrome and Firefox, due to source file format) <a href='./creative_coding_042/creative_coding_042.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_043_clui/index.html'>043_clui</a> # Creative Coding / Visual Experiments <a href='./creative_coding_043_clui/creative_coding_043_clui.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_050/index.php'>050</a> A prototype tool for a story generator/writer. <a href='./creative_coding_050/creative_coding_050.zip'>[zip]</a> </div>
-<div class='image'><a href='creative_coding_51_kanban/index.html'>51_kanban</a> a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript <a href='./creative_coding_51_kanban/creative_coding_51_kanban.zip'>[zip]</a> </div>
+</div><h2>Notes</h2><a href='./resources.html'>resources [md]</a><br><a href='./creative_coding_archive.html'>creative_coding_archive [md]</a><br><a href='./generate_maze.html'>generate_maze [md]</a><br><a href='./3d_printed_print_making_blocks.html'>3d_printed_print_making_blocks [PAGE]</a><br><a href='./gradients.html'>gradients [PAGE]</a><br><h2>Experiments</h2><div class='image'><a href='creative_coding_001/presnet.html'>001</a> Draw a parametric box with loops on X,Y (SVG) <a href='./creative_coding_001/creative_coding_001.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_002/presnet.html'>002</a> Draw letterforms using circles; export/save SVG file (SVG) <a href='./creative_coding_002/creative_coding_002.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_003/presnet.html'>003</a> Draw a circle line by line (SVG) <a href='./creative_coding_003/creative_coding_003.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_005/presnet.html'>005</a> Drawing line by line with a repeated colour palette on HTML Canvas; adapted from 003. (Canvas)  <a href='./creative_coding_005/creative_coding_005.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_006/presnet.html'>006</a> No animation: the image is calculated and displayed in one go. Adapted from 005. (Canvas)  <a href='./creative_coding_006/creative_coding_006.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_010/presnet.html'>010</a> Reactive mouse hover Trim logotyype (Canvas)  <a href='./creative_coding_010/creative_coding_010.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_012/presnet.html'>012</a> Random lines in columns (SVG)  <a href='./creative_coding_012/creative_coding_012.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_013/presnet.html'>013</a> Random lines in columns, variation (SVG)  <a href='./creative_coding_013/creative_coding_013.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_014/presnet.html'>014</a> Random lines in columns, animated (SVG)  <a href='./creative_coding_014/creative_coding_014.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_022/presnet.html'>022</a> Drawing a faded rectangle, then drawing the same shape but moving the top-right point 10px to the right—over and over (SVG, loop) <a href='./creative_coding_022/creative_coding_022.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_024/presnet.html'>024</a> drawing: hover: css changes (colours, rotation) (SVG, CSS) <a href='./creative_coding_024/creative_coding_024.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_025/presnet.html'>025</a> basic div ABC typeface (HTML intro)  <a href='./creative_coding_025/creative_coding_025.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_026/presnet.html'>026</a> basic div chess board (HTML intro) <a href='./creative_coding_026/creative_coding_026.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_027/presnet.html'>027</a> ground ui work for a pixel drawing tool (jQuery, HTML) <a href='./creative_coding_027/creative_coding_027.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_029/presnet.html'>029</a> Simpler version of 027; introducing loops and variables (HTML, jQuery, CSS) <a href='./creative_coding_029/creative_coding_029.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_029b/presnet.html'>029b</a> (HTML + jQuery + CSS) simpler version of 027; introducing loops and variables <a href='./creative_coding_029b/creative_coding_029b.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_030/presnet.html'>030</a> simple SVG shapes with basic coordinates (SVG) <a href='./creative_coding_030/creative_coding_030.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_031/presnet.html'>031</a> simple SVG shapes with basic coordinates (SVG) <a href='./creative_coding_031/creative_coding_031.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_032/presnet.html'>032</a> Copy image to new image (lower resolution), then parse pixels colors from images and create svg (jquery, canvas, svg) <a href='./creative_coding_032/creative_coding_032.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_033/presnet.html'>033</a> keyboard input, basic template <a href='./creative_coding_033/creative_coding_033.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_034/presnet.html'>034</a> move a square within a parametric grid <a href='./creative_coding_034/creative_coding_034.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_035/presnet.html'>035</a> read data from text string <a href='./creative_coding_035/creative_coding_035.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_036/presnet.html'>036</a> move a square within a parametric grid: keyboard and mouse interactions; draw with pixel, brushes, lines <a href='./creative_coding_036/creative_coding_036.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_037/presnet.html'>037</a> Glitch: draw a line over an image usign the clicked pixel colour <a href='./creative_coding_037/creative_coding_037.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_038-NK/presnet.html'>038-NK</a> Gradients generator with steps and colour palette. <a href='./creative_coding_038-NK/creative_coding_038-NK.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_038/presnet.html'>038</a> Gradients generator with steps and colour palette. <a href='./creative_coding_038/creative_coding_038.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_039/presnet.html'>039</a> Copy current frame from a video into a canvas, every 1/30th of a sec (works in Chrome and Firefox, due to source file format) <a href='./creative_coding_039/creative_coding_039.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_040/presnet.html'>040</a> Glitch: draw a line over an image usign the clicked pixel colour <a href='./creative_coding_040/creative_coding_040.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_041/presnet.html'>041</a> Slitscan a video; extension of 039. Copy 20 pixels wide vertical band from a video every XXth seconds and paste it next to previous vertical bands in a Canvas image. <a href='./creative_coding_041/creative_coding_041.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_042/presnet.html'>042</a> Copy current frame from a video into a canvas, every 1/30th of a sec (works in Chrome and Firefox, due to source file format) <a href='./creative_coding_042/creative_coding_042.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_043_clui/presnet.html'>043_clui</a> # Creative Coding / Visual Experiments <a href='./creative_coding_043_clui/creative_coding_043_clui.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_050/presnet.html'>050</a> A prototype tool for a story generator/writer. <a href='./creative_coding_050/creative_coding_050.zip'>[zip]</a> </div>
+<div class='image'><a href='creative_coding_51_kanban/presnet.html'>51_kanban</a> a prototype for a bare/basic Kanban system using the Finder's folders and simple Applescript <a href='./creative_coding_51_kanban/creative_coding_51_kanban.zip'>[zip]</a> </div>
 </body>
 </html>

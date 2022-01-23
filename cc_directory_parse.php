@@ -5,6 +5,10 @@ require __DIR__ . '/vendor/autoload.php';
 $Parsedown = new Parsedown();
 
 
+// GENERATE THE FILES
+$default_header = file_get_contents('./default_header.html');
+$default_menu = file_get_contents('./default_menu.html');
+$default_footer = file_get_contents('./default_footer.html');
 
 echo "### --- CREATIVE CODING\n";
 $file_number = 0;
@@ -47,8 +51,27 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
-                $output_array[$file_number] = "<div class='image'><a href='{$file}/{$file_inside}'>$link_text</a> {$line} <a href='./{$file}/{$file}.zip'>[zip]</a> </div>";
+                $output_array[$file_number] = "<div class='image'><a href='{$file}/present.html'>$link_text</a> {$line} <a href='./{$file}/{$file}.zip'>[zip]</a> </div>"; // link to the experimetn itself: {$file_inside}
                 $content_summary_array[$file_number] = "{$file} --- {$line} ";
+
+                // create a presentation page
+                // $presentation_data insert readme.md text
+                $presentation_data =$default_header;
+                $presentation_data .=$default_menu;
+                $presentation_data .= file_get_contents("./source/{$file}/readme.md");
+                // insert code content in the page
+                if (file_exists("./source/{$file}/index.js")) {
+                  $presentation_data .= "<pre><code>";
+                  $presentation_data .= htmlentities(file_get_contents("./source/{$file}/index.js"));
+                  $presentation_data .= "</code></pre>";  
+                }
+                if (file_exists("./source/{$file}/index.php")) {
+                  $presentation_data .= "<pre><code>";
+                  $presentation_data .= htmlentities(file_get_contents("./source/{$file}/index.php"));
+                  $presentation_data .= "</code></pre>";  
+                }
+                $presentation_data .=$default_footer;
+                file_put_contents("./docs/{$file}/present.html", $presentation_data);
 
               }
             }
@@ -67,15 +90,6 @@ if (is_dir($dir)) {
 
   
 }
-
-
-// use the github link in a specific text file to generate liks back to github
-
-
-// GENERATE THE FILES
-$default_header = file_get_contents('./default_header.html');
-$default_menu = file_get_contents('./default_menu.html');
-$default_footer = file_get_contents('./default_footer.html');
 
 // get the notes md files from ./source_notes and compile them into html files
 // must include:
