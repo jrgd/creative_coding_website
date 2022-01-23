@@ -58,7 +58,11 @@ if (is_dir($dir)) {
                 // $presentation_data insert readme.md text
                 $presentation_data =$default_header;
                 $presentation_data .=$default_menu;
-                $presentation_data .= file_get_contents("./source/{$file}/readme.md");
+                $presentation_data .= "<p>";
+                $presentation_data .= $Parsedown->text(file_get_contents("./source/{$file}/readme.md"));
+                $presentation_data .= "<br>";
+                $presentation_data .= "<a href='./{$file_inside}'>Link</a>";
+                $presentation_data .= "</p>";
                 // insert code content in the page
                 if (file_exists("./source/{$file}/index.js")) {
                   $presentation_data .= "<pre><code>";
