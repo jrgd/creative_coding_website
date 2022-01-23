@@ -1,0 +1,65 @@
+<head>
+  <title>Creative Coding / Visual Experiments</title>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <h1>Creative Coding / Visual Experiments</h1>
+  <h2>an ongoing coding/research seminar</h2><div class='navigation'>
+  <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
+</div> ground ui work for a pixel drawing tool (jQuery, HTML)
+
+ # Creative Coding / Visual Experiments
+ ## an ongoing coding/research seminar
+ <http://creativecoding.xyz><pre><code>$(document).ready(function(){
+
+  $('.c_rows_q, .c_cols_q').on('change', function(e) {
+    console.log($(e.target).data('canvas_property'), e.target.value);
+    setup_grid();
+  });
+
+  // setup the canvas grid
+  setup_grid();
+  function setup_grid() {
+    
+    $('#canvas').empty();
+
+    var grid_cols_q = $('.c_cols_q').val();
+    var grid_rows_q = $('.c_rows_q').val();
+    var ele_height = 30;
+    var ele_width = 30;
+
+    for (var grid_cols_i = 0; grid_cols_i &lt;= grid_cols_q - 1; grid_cols_i++) {
+      for (var grid_rows_i = 0; grid_rows_i &lt;= grid_rows_q - 1; grid_rows_i++) {
+        var new_cell = $(&quot;&lt;div&gt;&quot;)
+          .addClass('c_'+grid_cols_i)
+          .addClass('r_'+grid_rows_i)
+          .addClass('grid_cell')
+          .addClass('black')
+          .css({'top':(grid_rows_i * ele_height)+'px', 'left':grid_cols_i * ele_width})
+          .on('click', function(e){
+            if($(this).hasClass('black')) {
+              $(this).removeClass('black').addClass('white');
+            } else {
+              $(this).removeClass('white').addClass('black');
+            }
+            
+          })
+        $('#canvas').append(new_cell);
+      }
+    }
+
+  }
+  
+
+  // Export the canvas cells
+  // &hellip; well, kind of.
+  $('#export').on('click', function(){
+    var html_to_export = $('#canvas').html();
+
+    var display_code = $('&lt;textarea&gt;')
+      .text(html_to_export);
+    $('body').append(display_code);
+  });
+});</code></pre></body>
+</html>

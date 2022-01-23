@@ -1,0 +1,158 @@
+<head>
+  <title>Creative Coding / Visual Experiments</title>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <h1>Creative Coding / Visual Experiments</h1>
+  <h2>an ongoing coding/research seminar</h2><div class='navigation'>
+  <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
+</div>A prototype tool for a story generator/writer.
+It works like for text based games and explore the notion of a self replicating tool that is also the product. A bit like a reprap but for narrations.
+
+# Creative Coding / Visual Experiments
+## an ongoing coding/research seminar
+<http://creativecoding.xyz><pre><code>&lt;?php 
+//
+?&gt;&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;&lt;/title&gt;
+
+  
+  &lt;style type=&quot;text/css&quot;&gt;
+    body {
+      margin: 0;
+      padding:  0;
+      /*overflow:  hidden;*/
+    }
+
+    choice.link_interface {
+      background-color:  yellow;
+      padding:  3px;
+      color:  black;
+      font-family: monospace;
+      font-size:  11px;
+      border:  1px solid black;
+      margin:  3px 0;
+      width:  200px;
+      text-align: center;
+    }
+
+    button.small_edit {
+      width: 50px;
+      margin-left:  10px;
+      padding: 0;
+    }
+    button {
+      font-family: monospace;
+      font-size:  11px;
+      border:  1px solid black;
+      margin:  3px 0;
+      width:  200px;
+      text-align: center;
+    }
+
+    card {
+      display:  block;
+      width:  80vw;
+      height:  80vh;
+      margin:  5vh 5vw 5vh 5vw;
+      padding:  5vh 5vw 5vh 5vw;
+      border:  1px solid black;
+    }
+
+    card text {
+      font-family: serif;
+      font-size: 40px;
+    }
+    card choice {
+      display:  block;
+      color:  blue;
+    }
+    card choice:hover {
+      display:  block;
+      color:  blue;
+      text-decoration:  underline;
+      cursor: pointer;
+    }
+
+    text {
+      display:  block;
+    }
+
+    controls {
+      position:  fixed;
+      top:  0;
+      right:  0;
+      margin:  5px;
+      padding:  5px;
+      border:  1px solid black;
+      width:  250px;
+      text-align:  right;
+      background-color:  yellow;
+    }
+
+    textarea.content_export {
+      width:  90vw;
+      height:  90vh;
+      margin:  5vh 5vw 5vh 5vw;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;controls&gt;
+    &lt;!-- &lt;button action='minimise'&gt;-&lt;/button&gt;&lt;br&gt; --&gt;
+    &lt;button action='save'&gt;Save&lt;/button&gt;&lt;br&gt;
+    &lt;!-- &lt;button action='new'&gt;New&lt;/button&gt;&lt;br&gt; --&gt;
+  &lt;/controls&gt;
+
+
+    &lt;card location_name=&quot;1&quot; source=&quot;[]&quot;&gt;
+      &lt;text timeout=&quot;&quot;&gt;
+        C'est un bon d&eacute;but: plusieurs directions s'ouvrent &agrave; toi! L'univers t'encourage donc &agrave; explorer; tu penses que
+      &lt;/text&gt;
+      &lt;choice destination=&quot;2&quot;&gt;Oui, c'est une bonne chose.&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+      &lt;choice destination=&quot;3&quot;&gt;Non, c'est terrifiant.&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+    &lt;button role=&quot;edit_content&quot;&gt;Edit content&lt;/button&gt;&lt;/card&gt;
+
+    &lt;card location_name=&quot;2&quot; source=&quot;[ID.choice, ID.choice, ID.choice]&quot;&gt;
+      &lt;text timeout=&quot;&quot;&gt;
+        Clairement, la situation est la suivante.
+        Tu peux aller:
+      &lt;/text&gt;
+      &lt;choice destination=&quot;1&quot;&gt;&agrave; droite&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+      &lt;choice destination=&quot;1&quot;&gt;en haut&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+      &lt;choice destination=&quot;1&quot;&gt;en bas&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+      &lt;choice destination=&quot;1&quot;&gt;&agrave; gauche&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+      &lt;choice destination=&quot;3&quot;&gt;nulle part&lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+    &lt;button role=&quot;edit_content&quot;&gt;Edit content&lt;/button&gt;&lt;/card&gt;
+
+    &lt;card location_name=&quot;3&quot; source=&quot;[ID.choice, ID.choice, ID.choice]&quot;&gt;
+      &lt;text timeout=&quot;&quot;&gt;
+  Comme c'est dommage.
+      &lt;/text&gt;
+      
+      &lt;choice destination=&quot;2&quot;&gt;&Agrave; bien y reflechir&hellip; &lt;button class=&quot;small_edit link_interface&quot;&gt;Edit&lt;/button&gt;&lt;/choice&gt;
+    &lt;button role=&quot;edit_content&quot;&gt;Edit content&lt;/button&gt;&lt;/card&gt;
+
+
+
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;!-- &lt;script type=&quot;text/javascript&quot; src=&quot;./node_modules/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src='./app.js'&gt;&lt;/script&gt; --&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+  &lt;?php
+    include('./node_modules/jquery/dist/jquery.min.js');
+  ?&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  &lt;?php
+    include('./app.js');
+  ?&gt;
+&lt;/script&gt;</code></pre></body>
+</html>
