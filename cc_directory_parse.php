@@ -51,7 +51,7 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
-                $output_array[$file_number] = "<div class='image'><a href='{$file}/present.html'>$link_text</a> {$line} [<a href='{$file}/{$file_inside}'>view</a>, <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
+                $output_array[$file_number] = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a>, <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
                 $content_summary_array[$file_number] = "{$file} --- {$line} ";
 
                 // create a presentation page
