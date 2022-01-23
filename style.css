@@ -39,6 +39,10 @@ img {
 pre {
   background-color:  #1e1e1e;
   padding:  1rem;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  word-wrap: break-word;
+  font-family: monospace;
 }
 
 code {
