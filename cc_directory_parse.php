@@ -60,7 +60,7 @@ if (is_dir($dir)) {
                 $presentation_data .=$default_menu;
                 $presentation_data .= "<p>";
 
-                $readme_content = file_get_contents("./source/{$file}/readme.md")
+                $readme_content = file_get_contents("./source/{$file}/readme.md");
                 $search = [
                   '<h1>Creative Coding / Visual Experiments</h1>',
                   '<h2>an ongoing coding/research seminar</h2>',
