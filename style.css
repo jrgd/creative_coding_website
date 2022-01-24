@@ -1,11 +1,11 @@
 @media screen and (max-width: 414px) {
   body {
-    margin:  0;
+    margin:  2vw;
   }
 }
 @media screen and (min-width: 414px) {
   body {
-    margin:  0 10vw 0 10vw;
+    margin:  5vw 10vw 10vw 10vw;
   }
 }
 
@@ -39,7 +39,7 @@ h3 {
 }
 
 hr { border: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid grey;
   margin: 20px 0 20px 0;
   padding: 0;
 }
