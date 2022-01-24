@@ -109,8 +109,6 @@ if (is_dir($dir)) {
                     // so we have here two fairly common cases where the code might break
                   }
                 }
-
-
                 // $output_array[$file_number] = $single_experiment_line;
 
                 echo "{$file} --- {$line} \n";
@@ -163,7 +161,7 @@ if (is_dir($dir)) {
     }
   }
 
-  sort($output_array);
+  
   // var_dump($output_array);
   foreach ($content_summary_array as $key => $value) {
     echo $value."\n";
@@ -265,11 +263,12 @@ $index_content .= "<h2>Notes</h2><div class='notes'>";
 $index_content .= $notes_links;
 $index_content .= "</div><h2>Experiments</h2>";
 foreach ($output_array as $section_title => $section_content) {
-  $index_content .= "<h3>{$section_title}</h3>";
+  $index_content .= "<details><summary><h3>{$section_title}</h3></summary>";
+  sort($section_content);
   foreach($section_content as $value) {
     $index_content .= $value."\n";  
   }
-  
+  $index_content .= "</details>";
 }
 $index_content .= $default_footer;
 

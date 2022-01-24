@@ -34,8 +34,15 @@ h2 {
 }
 
 h3 {
-  font-size: 1.6rem;
-  line-height: 1.6rem;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+}
+
+details summary h3 {
+  display:  inline-block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  cursor: pointer;
 }
 
 hr { border: 0;
