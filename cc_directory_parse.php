@@ -40,7 +40,7 @@ if (is_dir($dir)) {
 
               // ceate content for index.html: links to page and zip, short description, etc.
               if ($file_inside == "index.html" || $file_inside ==  "index.php") {
-                $file_inside = urlencode($file_inside);
+                // $file_inside = urlencode($file_inside);
                 $readme_file = $dir.'/'.$file.'/readme.md';
                 if (file_exists($readme_file)) {
                   $readme_content = file_get_contents($readme_file);  
@@ -51,7 +51,13 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
-                $output_array[$file_number] = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a> <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
+                if ($file_inside == "index.html" || $file_inside ==  "index.php") {
+                  $output_array[$file_number] = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a> <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
+                } else {
+                  $output_array[$file_number] = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='./{$file}/{$file}.zip'>zip</a>]</div>";
+                }
+
+                echo "{$file} --- {$line} \n";
                 $content_summary_array[$file_number] = "{$file} --- {$line} ";
 
                 // create a presentation page
@@ -69,9 +75,13 @@ if (is_dir($dir)) {
                 $replace = "";
                 $readme_content = str_replace($search, $replace, $readme_content);
 
+
+
                 $presentation_data .= $Parsedown->text($readme_content);
                 $presentation_data .= "<br>";
-                $presentation_data .= "<a href='{$file}/{$file_inside}'>Link: view the experiment</a>";
+                if ($file_inside == "index.html" || $file_inside ==  "index.php") {
+                  $presentation_data .= "<a href='{$file}/{$file_inside}'>Link: view the experiment</a>";
+                }
                 $presentation_data .= "</p>";
                 // insert code content in the page
                 if (file_exists("./source/{$file}/index.js")) {
@@ -87,6 +97,8 @@ if (is_dir($dir)) {
                 $presentation_data .=$default_footer;
                 file_put_contents("./docs/{$file}/present.html", $presentation_data);
 
+              } else {
+                // there is no web page to display; it might be a script in bash or applescript
               }
             }
           }

@@ -1,0 +1,52 @@
+<head>
+  <title>Creative Coding / Visual Experiments</title>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <h1>Creative Coding / Visual Experiments</h1>
+  <h2>an ongoing coding/research seminar</h2><div class='navigation'>
+  <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
+</div><p><h1>Simple logging app</h1>
+<p>This is a basic experiments of a logging app. It takes no argument but one: the text content of the log. The content could use eventually be parsed ansd so we could/should use meta, commands and status in there. The script is executed locally via php.</p>
+<p>Further research/experimentations:</p>
+<ol>
+<li>make it working via Alfred/Albert, CLI and web by analysing the context it's run in, $_GET or $argv.
+→ review url bar logging tool</li>
+<li>if it was to run on the web, what is the real point?
+→ The main idea here is to have a way to log notes simply from a phone or any devices.
+what are the alternatives here?</li>
+</ol>
+<h2>Documentation</h2>
+<h3>Change log</h3>
+<p>21 Jan</p>
+<ul>
+<li>basic use of .env file to set where the log file is stored; this allows to use SyncThing with the log file.
+19 Jan 2022</li>
+<li>logs contain the single and double quotes from the input</li>
+<li>log file is consolidated in one single file</li>
+<li>not a single software can replace self discpline</li>
+<li>adds human-readable date after the timestamp
+<h3>Install with Alfred.app</h3>
+<ul>
+<li>create a keyword trigger</li>
+<li>create a 'Run Script' Action</li>
+<li>set Language:
+/bin/zsh</li>
+<li>insert in Script:
+<code>/usr/local/bin/php /Users/jeromerigaud/tools/logger/log.php "{query}"</code></li>
+<li>link the trigger to the action
+<h3>Use from CLI</h3>
+<p><code>php ./log.php I'm also able to invoke the "software" from the command line</code>
+:+todo fix:  there is still an escape error and the single quote gets crushed</p>
+<h3>Other issues</h3></li>
+<li>to make it work in Alfred, I had to swap in the script the relative path for an absolute path</li>
+<li>in Alfred: ideally I should be able to use /usr/bin/php as the language instead of running it through zsh to reach php.</li>
+<li>shorter command: use a bash wrapper</li>
+</ul></li>
+</ul><br></p><hr>
+Repository for this website (assemble, build, deploy): <a href='https://github.com/jrgd/creative_coding_website' target=_blank>https://github.com/jrgd/creative_coding_website</a><br>
+Main website: <a href='https://creativecoding.xyz' target=_blank>CreativeCoding.xyz</a><br>
+Author: <a href='http://jeromerigaud.com'>Jerome Rigaud</a>
+</body>
+</html>
