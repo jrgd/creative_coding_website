@@ -91,10 +91,12 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
+                $repo_link = "<a href='".file_get_contents($dir.'/'.$file.'/repository_link.txt')."'>git</a>";
+
                 if ($file_inside == "index.html" || $file_inside ==  "index.php") {
-                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a> <a href='./{$file}/{$file}.zip'>zip</a>]</div>"; // link to the experimetn itself: {$file_inside}
+                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a> <a href='./{$file}/{$file}.zip'>zip</a> $repo_link]</div>"; // link to the experimetn itself: {$file_inside}
                 } else {
-                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='./{$file}/{$file}.zip'>zip</a>]</div>";
+                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='./{$file}/{$file}.zip'>zip</a> $repo_link]</div>";
                 }
 
                 // to group items into a section we can now use a switch clause, and variables
