@@ -72,6 +72,8 @@ div.image {
 
 div.notes {
   columns: 2;
+  column-gap: 10%;
+  column-rule: 1px solid grey;
 }
 
 div.notes a {
