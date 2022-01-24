@@ -79,3 +79,17 @@ div.notes {
 div.notes a {
   text-decoration: none;
 }
+
+form { padding: 5px 5px 0 0; margin-block-end: 0; }
+form p { display: inline; }
+form p label {}
+form p input[type="text"] { 
+  position: relative;
+  top: -3px;
+  color: black;
+}
+form p input[type="submit"] {
+  color: black;
+  position: relative; 
+  top: -2px;
+}
