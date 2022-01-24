@@ -17,21 +17,25 @@
 
 body {
   font-size: 1rem;
+  line-height:  1.2rem;
   background-color: black;
 }
 
 h1 { 
-  margin: 0;
+  margin: 2rem 0 0 0;
+  line-height: 3rem;
   padding: 0;
   font-size: 2rem;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  line-height: 2.1rem;
 }
 
 h3 {
   font-size: 1.6rem;
+  line-height: 1.6rem;
 }
 
 hr { border: 0;
@@ -59,4 +63,17 @@ code {
   background-color:  #1e1e1e;
   font-family: monospace;
   font-size:  0.9rem;
+}
+
+div.image {
+  padding-bottom: 0.5rem;
+  line-height:  1.2rem;
+}
+
+div.notes {
+  columns: 2;
+}
+
+div.notes a {
+  text-decoration: none;
 }
