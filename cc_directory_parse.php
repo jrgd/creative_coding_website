@@ -11,7 +11,7 @@ $default_menu = file_get_contents('./default_menu.html');
 $default_footer = file_get_contents('./default_footer.html');
 
 $sections_list = [
-  "Visual Experiments": [
+  "Visual Experiments"=> [
     "001",
     "002",
     "003",
@@ -44,7 +44,7 @@ $sections_list = [
     "042",
     "043_clui",
   ],
-  "Information Pipeline": [
+  "Information Pipeline"=> [
     "050",
     "51_kanban",
   ]
