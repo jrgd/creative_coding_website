@@ -1,0 +1,27 @@
+#video {
+  position: fixed;
+  z-index: 1000;
+  width: 200px;
+  /*display: none;*/
+}
+
+#video_container {
+  /*display: none;*/
+  opacity: 0;
+}
+
+#canvas_lowres {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  image-rendering: optimizeSpeed;             /* Older versions of FF          */
+  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+  image-rendering: pixelated;                 /* Awesome future-browsers       */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE   */           
+  filter: brightness(2) contrast(400%) grayscale(200%);
+}

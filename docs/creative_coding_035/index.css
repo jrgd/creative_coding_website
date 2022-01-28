@@ -1,0 +1,27 @@
+div#data_container {
+  position: absolute;
+  top: 0; right: 0;
+}
+
+div.single_square {
+  width: 29px;
+  height: 24px;
+  border: 1px solid black;
+  position: absolute;
+  background-color: none;
+  font-family: courrier, monospace;
+  color: grey;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 5px;
+}
+
+div.selected {
+  background-color: black;
+}
+
+textarea {
+  font-family: courrier, monospace;
+  height: 150px;
+  width: 150px;
+}

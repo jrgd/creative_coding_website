@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#hidden_information {
+  display: none;
+}
+
+#clui_content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 36px - 20px);
+  overflow: scroll;
+  margin: 10px;
+  border: 0px solid black;
+}
+
+#clui_line_container {
+  background-color: white;
+  border: 0;
+  border-top: 1px solid rgba(127,127,127,0.25);
+  width: calc( 100vw - 20px);
+  margin: 0;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+#clui_line {
+  width: calc( 100vw - 50px);
+  border: 0px solid black;
+  outline: 0;
+  margin: 0;
+  padding: 0 0 0 5px;
+}
+
+#clui_content,
+#clui_line_container,
+#clui_line {
+  font-size: 10pt;
+  font-family: "Helvetica Neue"; /*//"Courier New";*/
+  color: black;
+}
+
+li.command_history {
+  cursor: pointer;
+}

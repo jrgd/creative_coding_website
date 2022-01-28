@@ -1,0 +1,8 @@
+body {
+  background-color: black;
+}
+
+#board {
+  width: 1000px;
+  height: 1000px;
+}
