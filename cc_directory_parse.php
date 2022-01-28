@@ -5,6 +5,51 @@ require __DIR__ . '/vendor/autoload.php';
 $Parsedown = new Parsedown();
 
 
+// GENERATE THE FILES
+$default_header = file_get_contents('./default_header.html');
+$default_menu = file_get_contents('./default_menu.html');
+$default_footer = file_get_contents('./default_footer.html');
+
+$sections_list = [
+  "Visual Experiments"=> [
+    "001",
+    "002",
+    "003",
+    "005",
+    "006",
+    "010",
+    "012",
+    "013",
+    "014",
+    "022",
+    "024",
+    "025",
+    "026",
+    "027",
+    "029",
+    "029b",
+    "030",
+    "031",
+    "032",
+    "033",
+    "034",
+    "035",
+    "036",
+    "037",
+    "038",
+    "038",
+    "039",
+    "040",
+    "041",
+    "042",
+    "043_clui",
+  ],
+  "Information Pipeline"=> [
+    "050",
+    "51_kanban",
+    "052",
+  ]
+];
 
 echo "### --- CREATIVE CODING\n";
 $file_number = 0;
@@ -19,7 +64,7 @@ if (is_dir($dir)) {
       if ($file != "."  && $file != ".DS_Store" && $file != "..") {
         if (is_dir($dir.'/'.$file)) {
           if ($dir_inside =  opendir($dir.'/'.$file)) {
-
+            $single_experiment_line = "";
             while (($file_inside = readdir($dir_inside)) !== false) {
 
               // copy repositories folders into dist: ./docs
@@ -36,7 +81,7 @@ if (is_dir($dir)) {
 
               // ceate content for index.html: links to page and zip, short description, etc.
               if ($file_inside == "index.html" || $file_inside ==  "index.php") {
-                $file_inside = urlencode($file_inside);
+                // $file_inside = urlencode($file_inside);
                 $readme_file = $dir.'/'.$file.'/readme.md';
                 if (file_exists($readme_file)) {
                   $readme_content = file_get_contents($readme_file);  
@@ -47,10 +92,112 @@ if (is_dir($dir)) {
                 $file_number++; // = intval($file);
                 // {$dir}/
                 $link_text = str_replace('creative_coding_', '', $file);
-                $output_array[$file_number] = "<div class='image'><a href='{$file}/{$file_inside}'>$link_text</a> {$line} <a href='./{$file}/{$file}.zip'>[zip]</a> </div>";
+                $repo_link = "<a href='".file_get_contents($dir.'/'.$file.'/repository_link.txt')."'>git</a>";
+
+                if ($file_inside == "index.html" || $file_inside ==  "index.php") {
+                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='{$file}/{$file_inside}'>view</a> <a href='./{$file}/{$file}.zip'>zip</a> $repo_link]</div>"; // link to the experimetn itself: {$file_inside}
+                } else {
+                  $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='./{$file}/{$file}.zip'>zip</a> $repo_link]</div>";
+                }
+
+                // to group items into a section we can now use a switch clause, and variables
+                // find out if the piece number is in the sections_list, and what is its parent section
+                foreach($sections_list as $section_title => $list_of_references) {
+                  if (in_array($link_text, $list_of_references)) {
+                    // found
+                    $output_array[$section_title][$file_number] = $single_experiment_line;
+                  } else {
+                    // not found
+                    // the mmmain issue is if the piece is not listed in the section: it wont appear at all on the page; similar to the nbreaking condition: if the repository doesn't have a index.html or index.php within, it wont be listed
+                    // so we have here two fairly common cases where the code might break
+                  }
+                }
+                // $output_array[$file_number] = $single_experiment_line;
+
+                echo "{$file} --- {$line} \n";
                 $content_summary_array[$file_number] = "{$file} --- {$line} ";
 
+                // create a presentation page
+                // $presentation_data insert readme.md text
+                $presentation_data =$default_header;
+                $presentation_data .=$default_menu;
+                $presentation_data .= "<p>";
+
+                $readme_content = file_get_contents("./source/{$file}/readme.md");
+                $search = [
+                  '# Creative Coding / Visual Experiments',
+                  '## an ongoing coding/research seminar',
+                  '<http://creativecoding.xyz>',
+                ];
+                $replace = "";
+                $readme_content = str_replace($search, $replace, $readme_content);
+
+
+
+                $presentation_data .= $Parsedown->text($readme_content);
+                $presentation_data .= "<br>";
+                if ($file_inside == "index.html" || $file_inside ==  "index.php") {
+                  $presentation_data .= "<a href='{$file}/{$file_inside}'>View the experiment</a><br>";
+                }
+                $presentation_data .= "<a href='".file_get_contents("./source/{$file}/repository_link.txt")."'>Git repository</a>";
+                $presentation_data .= "</p>";
+                // insert code content in the page
+                if (file_exists("./source/{$file}/index.js")) {
+                  $presentation_data .= "<pre><code>";
+                  $presentation_data .= htmlentities(file_get_contents("./source/{$file}/index.js"));
+                  $presentation_data .= "</code></pre>";  
+                }
+                if (file_exists("./source/{$file}/index.php")) {
+                  $presentation_data .= "<pre><code>";
+                  $presentation_data .= htmlentities(file_get_contents("./source/{$file}/index.php"));
+                  $presentation_data .= "</code></pre>";  
+                }
+                $presentation_data .=$default_footer;
+                file_put_contents("./docs/{$file}/present.html", $presentation_data);
+
+              } else {
+                // there is no web page to display; it might be a script in bash or applescript
               }
+            }
+            echo "{$file}\n";
+            if (strlen($single_experiment_line) < 1 ) {
+
+              echo "### missing index file - will atempt to autocreate one from readme.md ###";
+              // the variable has not been built
+              // so the repo doesnt have a page to present the project
+              // let's build one.
+              $readme_file = $dir.'/'.$file.'/readme.md';
+              if (file_exists($readme_file)) {
+                $readme_content = file_get_contents("./source/{$file}/readme.md");
+                $search = [
+                  '# Creative Coding / Visual Experiments',
+                  '## an ongoing coding/research seminar',
+                  '<http://creativecoding.xyz>',
+                ];
+                $replace = "";
+                $readme_content = str_replace($search, $replace, $readme_content);
+                $presentation_data .= $Parsedown->text($readme_content);
+                $line = preg_split('#\r?\n#', trim($readme_content), 0)[0];
+                $presentation_data .= "<a href='".file_get_contents("./source/{$file}/repository_link.txt")."'>Git repository</a>";
+                file_put_contents("./docs/{$file}/present.html", $presentation_data);
+
+                $link_text = str_replace('creative_coding_', '', $file);
+                $repo_link = "<a href='".file_get_contents($dir.'/'.$file.'/repository_link.txt')."'>git</a>";
+                $single_experiment_line = "<div class='image'><b>$link_text</b> {$line} [<a href='{$file}/present.html'>info</a> <a href='./{$file}/{$file}.zip'>zip</a> $repo_link]</div>";
+
+                echo $single_experiment_line."\n";
+
+                foreach($sections_list as $section_title => $list_of_references) {
+                  if (in_array($link_text, $list_of_references)) {
+                    // found
+                    $output_array[$section_title][$file_number] = $single_experiment_line;
+                  }
+                }
+              } else {
+                // $readme_content = $line = "";
+              }
+
+
             }
           }
         }
@@ -58,24 +205,12 @@ if (is_dir($dir)) {
     }
   }
 
-  sort($output_array);
+  
   // var_dump($output_array);
   foreach ($content_summary_array as $key => $value) {
     echo $value."\n";
   }
-
-
-  
 }
-
-
-// use the github link in a specific text file to generate liks back to github
-
-
-// GENERATE THE FILES
-$default_header = file_get_contents('./default_header.html');
-$default_menu = file_get_contents('./default_menu.html');
-$default_footer = file_get_contents('./default_footer.html');
 
 // get the notes md files from ./source_notes and compile them into html files
 // must include:
@@ -168,11 +303,16 @@ if (is_dir($dir)) {
 $index_content = "";
 $index_content .= $default_header;
 $index_content .= $default_menu;
-$index_content .= "<h2>Notes</h2>";
+$index_content .= "<h2>Notes</h2><div class='notes'>";
 $index_content .= $notes_links;
-$index_content .= "<h2>Experiments</h2>";
-foreach ($output_array as $key => $value) {
-  $index_content .= $value."\n";
+$index_content .= "</div><h2>Experiments</h2>";
+foreach ($output_array as $section_title => $section_content) {
+  $index_content .= "<details><summary><h3>{$section_title}</h3></summary>";
+  sort($section_content);
+  foreach($section_content as $value) {
+    $index_content .= $value."\n";  
+  }
+  $index_content .= "</details>";
 }
 $index_content .= $default_footer;
 
