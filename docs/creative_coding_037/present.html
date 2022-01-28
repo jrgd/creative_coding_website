@@ -1,0 +1,85 @@
+<head>
+  <title>Creative Coding: Visual Experiments & Information Pipeline</title>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <h1>Creative Coding: Visual Experiments & Information Pipeline</h1>
+  <h2>an ongoing coding and research seminar</h2><div class='navigation'>
+  <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
+</div>
+<hr><p><p>Glitch: draw a line over an image usign the clicked pixel colour</p><br><a href='creative_coding_037/index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_037
+'>Git repository</a></p><pre><code>var g_mousedown = false;
+
+$(document).ready(function(){
+  $board = $('#board');
+  var img = document.getElementById('source_image');
+  var canvas = document.createElement('canvas');
+  var k = 1;
+  canvas.width = img.width/k;
+  canvas.height = img.height/k;
+  canvas.getContext('2d').drawImage(img, 0, 0, img.width/k, img.height/k);
+
+  var context = canvas.getContext(&quot;2d&quot;);
+  var imgData = context.getImageData(0,0,canvas.width,canvas.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
+
+  // resizing the copy image
+  $('#dest_image_container').append(canvas);
+  $('#dest_image_container canvas').css({'width':img.width, 'height':img.height});
+
+
+  
+  $('#dest_image_container canvas').on('mousemove', function(event){
+    image_data = get_color(event, imgData);
+    console.log(image_data);
+
+    if (g_mousedown === true) {
+      context.fillStyle = &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;;
+      context.fillRect(image_data.x, image_data.y, 1, image_data.y*-1 );
+    }
+  });
+
+  $('#dest_image_container canvas').mousedown(function(event){
+    g_mousedown = true;
+  });
+  $('#dest_image_container canvas').mouseup(function(event){
+    g_mousedown = false;
+  });
+
+  $('#dest_image_container canvas').on('click', function(event){
+    image_data = get_color(event, imgData);
+
+    context.fillStyle = &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;;
+    context.fillRect(image_data.x, image_data.y, 1, image_data.y*-1 );
+  });
+
+});
+
+function getPixel(imgData, index) {
+  var i = index*4, d = imgData.data;
+  return [d[i],d[i+1],d[i+2],d[i+3]] // Returns array [R,G,B,A]
+}
+
+function getPixelXY(imgData, x, y) {
+
+  return getPixel(imgData, y*imgData.width+x);
+}
+
+function get_color(event, imgData) {
+  var mouse_coordinates = {x:event.offsetX, y:event.offsetY};
+  var colour = getPixelXY(imgData, mouse_coordinates.x, mouse_coordinates.y);
+  var image_data = {x:mouse_coordinates.x, y:mouse_coordinates.y, r:colour[0], g:colour[1], b:colour[2], a:colour[3]};
+  return image_data;
+}</code></pre><hr>
+
+<form action="https://tinyletter.com/jrgd" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/jrgd', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+  <p><label for="tlemail">Subscribe via email</label></p>
+  <p><input type="text" name="email" id="tlemail" /></p>
+  <p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /></p>
+</form>
+
+Repository for this website (assemble, build, deploy): <a href='https://github.com/jrgd/creative_coding_website' target=_blank>https://github.com/jrgd/creative_coding_website</a><br>
+Main website: <a href='https://creativecoding.xyz' target=_blank>CreativeCoding.xyz</a><br>
+Author: <a href='http://jeromerigaud.com'>Jerome Rigaud</a>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<head>
+  <title>Creative Coding: Visual Experiments & Information Pipeline</title>
+  <base href="https://creativecoding.xyz/">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <h1>Creative Coding: Visual Experiments & Information Pipeline</h1>
+  <h2>an ongoing coding and research seminar</h2><div class='navigation'>
+  <a href='./index.html'>Index</a> | <a href='./notes.html'>Notes</a>
+</div>
+<hr><p><p>Glitch: draw a line over an image usign the clicked pixel colour</p><br><a href='creative_coding_040/index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_040
+'>Git repository</a></p><pre><code>var g_mousedown = false;
+var direction = 'bottom';
+var active_tool = 'pixel_puller';
+function setup_controls() {
+
+  var palette_image = ($('#selected_colour img').eq(0))[0];
+  var palette_canvas = document.createElement('canvas');
+  var palette_context = palette_canvas.getContext(&quot;2d&quot;);
+  palette_context.drawImage(palette_image, 0, 0, 150, 150);
+  var paletteData = palette_context.getImageData(0,0,palette_image.width,palette_image.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
+
+  $('body').on('keydown', function(k){
+    var keypressed = k.originalEvent.key;
+    console.log(keypressed);
+    switch(keypressed) {
+      case &quot;q&quot;:
+        active_tool = 'pixel_puller';
+        break;
+      case &quot;p&quot;:
+        active_tool = 'colour_picker';
+        break;
+      case &quot;ArrowUp&quot;:
+        direction = 'up';
+        break;
+      case &quot;ArrowDown&quot;:
+        direction = 'down';
+        break;
+      case &quot;ArrowLeft&quot;:
+        direction = 'left';
+        break;
+      case &quot;ArrowRight&quot;:
+        direction = 'right';
+        break;
+    }
+
+    $(&quot;#floating_palette input[name=active_tool]&quot;).val(active_tool);
+    $(&quot;#floating_palette input[name=direction]&quot;).val(direction);
+  });
+
+  $('#selected_colour').on('mousedown', function(){
+    $(this).find('img').show();
+  });
+  $('#selected_colour').on('mouseup', function(event){
+    palette_colour_data = get_color(event, paletteData);
+    $('#selected_colour').css({'background-color':&quot;rgba(&quot;+palette_colour_data.r+&quot;, &quot;+palette_colour_data.g+&quot;, &quot;+palette_colour_data.b+&quot;, &quot;+palette_colour_data.a+&quot;)&quot;})
+    // $(this).find('img').hide();
+  });
+}
+$(document).ready(function(){
+  
+  setup_controls();
+
+  setup_images();
+
+  var dropZone = document.getElementById('source_image_container');
+  console.log(dropZone);
+
+  // Optional.   Show the copy icon when dragging over.  Seems to only work for chrome.
+  dropZone.addEventListener('dragover', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+  });
+
+  // Get file data on drop
+  dropZone.addEventListener('drop', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      var files = e.dataTransfer.files; // Array of all files
+
+      for (var i=0, file; file=files[i]; i++) {
+          if (file.type.match(/image.*/)) {
+              var reader = new FileReader();
+
+              reader.onload = function(e2) {
+                  // finished reading file data.
+                  var img = document.createElement('img');
+                  img.src= e2.target.result;
+                  img.id = 'source_image';
+                  // document.body.appendChild(img);
+                  $('#source_image_container *').remove();
+                  $('#source_image_container').append(img);
+                  setup_images();
+              }
+
+              reader.readAsDataURL(file); // start reading the file data.
+          }
+      }
+  });
+});
+
+function getPixel(imgData, index) {
+  var i = index*4, d = imgData.data;
+  console.log(i, imgData.data.length)
+  return [d[i],d[i+1],d[i+2],d[i+3]] // Returns array [R,G,B,A]
+}
+
+function getPixelXY(imgData, x, y) {
+
+  return getPixel(imgData, y*imgData.width+x);
+}
+
+function get_color(event, imgData) {
+  var mouse_coordinates = {x:event.offsetX, y:event.offsetY};
+  var colour = getPixelXY(imgData, mouse_coordinates.x, mouse_coordinates.y);
+  var image_data = {x:mouse_coordinates.x, y:mouse_coordinates.y, r:colour[0], g:colour[1], b:colour[2], a:colour[3]};
+  console.log(image_data);
+  return image_data;
+}
+
+function setup_images() {
+  $board = $('#board');
+  var img = document.getElementById('source_image');
+  var canvas = document.createElement('canvas');
+  var k = 1;
+  canvas.width = img.width/k;
+  canvas.height = img.height/k;
+  canvas.getContext('2d').drawImage(img, 0, 0, img.width/k, img.height/k);
+
+  var context = canvas.getContext(&quot;2d&quot;);
+  var imgData = context.getImageData(0,0,canvas.width,canvas.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
+
+  // resizing the copy image
+  $('#dest_image_container img').remove();
+  $('#dest_image_container').append(canvas);
+  $('#dest_image_container canvas').css({'width':img.width, 'height':img.height});
+
+
+  
+  $('#dest_image_container canvas').on('mousemove', function(event){
+    image_data = get_color(event, imgData);
+    image_data.a = 0.25;
+    // console.log(image_data);
+
+    switch(active_tool) {
+      case 'colour_picker':
+        // $('#selected_colour').css({'background-color':&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
+        break;
+      case 'pixel_puller':
+      default:
+        var gradient_final_color = $('#selected_colour').css('background-color'); //$('select[name=gradient_final_colour]').find(&quot;:selected&quot;).val()
+        gradient_final_color_array = gradient_final_color.match(/\d+/g).map(Number);
+        gradient_final_color_array.push( parseInt($('[name=gradient_final_colour_opacity]').val())/100 );
+        gradient_final_color = &quot;rgb(&quot;+gradient_final_color_array.join(',')+&quot;)&quot;;
+        console.log(gradient_final_color);
+
+        if (g_mousedown === true) {
+          
+          // context.fillStyle = &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;;
+
+          switch(direction) {
+            case &quot;up&quot;:
+              var gradient = context.createLinearGradient(1,image_data.y, 1,0);
+              gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
+              gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
+              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              context.fillStyle = gradient;
+              context.fillRect(image_data.x, image_data.y, 1, image_data.y*-1 );
+              break;
+            case &quot;down&quot;:
+              var gradient = context.createLinearGradient(1,image_data.y, 1,img.height);
+              gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
+              gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
+              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              context.fillStyle = gradient;
+              context.fillRect(image_data.x, image_data.y, 1, img.height-image_data.y );
+              break;
+            case 'right':
+              var gradient = context.createLinearGradient(image_data.x,1, img.width,1);
+              gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
+              gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
+              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              context.fillStyle = gradient;
+              context.fillRect(image_data.x, image_data.y, img.width-image_data.x, 1 );
+              break;
+            case 'left':
+              var gradient = context.createLinearGradient(image_data.x,1, 0,1);
+              gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
+              gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
+              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              context.fillStyle = gradient;
+              context.fillRect(image_data.x, image_data.y, image_data.x*-1, 1 );
+              break;
+          }
+        }
+        break;
+    }
+
+
+  });
+
+  $('#dest_image_container canvas').mousedown(function(event){
+    g_mousedown = true;
+  });
+  $('#dest_image_container canvas').mouseup(function(event){
+    g_mousedown = false;
+    if (active_tool == 'colour_picker') {
+      image_data = get_color(event, imgData);
+      $('#selected_colour').css({'background-color':&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
+    }
+  });
+
+}</code></pre><hr>
+
+<form action="https://tinyletter.com/jrgd" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/jrgd', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+  <p><label for="tlemail">Subscribe via email</label></p>
+  <p><input type="text" name="email" id="tlemail" /></p>
+  <p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /></p>
+</form>
+
+Repository for this website (assemble, build, deploy): <a href='https://github.com/jrgd/creative_coding_website' target=_blank>https://github.com/jrgd/creative_coding_website</a><br>
+Main website: <a href='https://creativecoding.xyz' target=_blank>CreativeCoding.xyz</a><br>
+Author: <a href='http://jeromerigaud.com'>Jerome Rigaud</a>
+</body>
+</html>
