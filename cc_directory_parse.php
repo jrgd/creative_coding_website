@@ -137,7 +137,7 @@ if (is_dir($dir)) {
                 $presentation_data .= $Parsedown->text($readme_content);
                 $presentation_data .= "<br>";
                 if ($file_inside == "index.html" || $file_inside ==  "index.php") {
-                  $presentation_data .= "<a href='{$file}/{$file_inside}'>View the experiment</a><br>";
+                  $presentation_data .= "<a href='./{$file_inside}'>View the experiment</a><br>";
                 }
                 $presentation_data .= "<a href='".file_get_contents("./source/{$file}/repository_link.txt")."'>Git repository</a>";
                 $presentation_data .= "</p>";
