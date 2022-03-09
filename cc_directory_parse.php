@@ -226,23 +226,24 @@ if (is_dir($dir)) {
       $page_content = '';
       if ($file != "."  && $file != ".DS_Store" && $file != "..") {
         if (is_dir($dir.'/'.$file)) {
+          $page_content = "";
+          $page_content .= $default_header;
+          $page_content .= $default_menu;
           if ($dir_inside =  opendir($dir.'/'.$file)) {
 
             $cmd = "mkdir ./docs/{$file}";
             $cmd_result = shell_exec($cmd);
-            $page_content = "";
-            $page_content .= $default_header;
-            $page_content .= $default_menu;
+            
 
             while (($file_inside = readdir($dir_inside)) !== false) {
               $file_extension_dot_pos = strrpos($file_inside, '.');
               $file_extension = substr($file_inside, $file_extension_dot_pos+1);
-              switch ($file_extension) {
+              switch (strtolower($file_extension)) {
                 case 'md':
                 case 'txt':
                 case 'html':
                   // code...
-                  $page_content .= file_get_contents($dir_inside.'/'.$file_inside);
+                  $page_content_array['texts'][] = $Parsedown->text( file_get_contents($dir .'/'. $file.'/'.$file_inside) );
                   break;
 
                 case 'jpg':
@@ -252,7 +253,7 @@ if (is_dir($dir)) {
                   $source_path = $dir.'/'.$file;
                   $cmd = "cp ./{$source_path}/{$file_inside} ./docs/{$file}/";
                   $cmd_result = shell_exec($cmd);
-                  $page_content .= "<img src='./".$file."/".$file_inside."'>";
+                  $page_content_array['images'][] = "<img src='./".$file."/".$file_inside."'>";
                   break;
 
                 default:
@@ -260,6 +261,15 @@ if (is_dir($dir)) {
                   break;
               }
             }
+
+            // firast output the texts, then the images
+            foreach($page_content_array['texts'] as $single_text_element) {
+              $page_content .= $single_text_element;
+            }
+            foreach($page_content_array['images'] as $single_image_element) {
+              $page_content .= $single_image_element;
+            }
+
             $page_content .= $default_footer;
             file_put_contents('./docs/'.$file.'.html', $page_content);
             $notes_links .= "<a href='./{$file}.html'>{$file} [PAGE]</a><br>";
