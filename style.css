@@ -17,7 +17,7 @@
 
 body {
   font-size: 1rem;
-  line-height:  1.2rem;
+  line-height:  1.4rem;
   background-color: black;
 }
 
@@ -74,7 +74,7 @@ code {
 
 div.image {
   padding-bottom: 0.5rem;
-  line-height:  1.2rem;
+  line-height:  1.4rem;
 }
 
 div.notes {
