@@ -47,7 +47,10 @@ $sections_list = [
   "Information Pipeline"=> [
     "050",
     "51_kanban",
+<<<<<<< HEAD
     "052",
+=======
+>>>>>>> 6709d38f5f14324a046471a2b26ab2ee4c1e649f
   ]
 ];
 
