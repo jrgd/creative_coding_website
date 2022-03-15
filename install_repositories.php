@@ -39,6 +39,7 @@ $repositories_array = [
   "git@github.com:jrgd/creative_coding_51_kanban.git",
   "https://github.com/jrgd/creative_coding_052",
   "https://github.com/jrgd/creative_coding_053",
+  "https://github.com/jrgd/creative_coding_054",
 ];
 
 foreach($repositories_array as $single_repository) {
