@@ -49,6 +49,7 @@ $sections_list = [
     "050",
     "51_kanban",
     "052",
+    "054",
   ]
 ];
 
@@ -155,20 +156,26 @@ if (is_dir($dir)) {
                 }
                 $presentation_data .=$default_footer;
                 file_put_contents("./docs/{$file}/present.html", $presentation_data);
-
+                $presentation_data = "";
               } else {
                 // there is no web page to display; it might be a script in bash or applescript
+                // $presentation_data = "";
               }
             }
             echo "{$file}\n";
             if (strlen($single_experiment_line) < 1 ) {
-
-              echo "### missing index file - will atempt to autocreate one from readme.md ###";
+              $presentation_data =$default_header;
+              $presentation_data .=$default_menu;
+              
+              echo "### missing index file - will atempt to autocreate one from readme.md ###\n";
               // the variable has not been built
               // so the repo doesnt have a page to present the project
               // let's build one.
               $readme_file = $dir.'/'.$file.'/readme.md';
+
+              
               if (file_exists($readme_file)) {
+                echo "working with {$file} to auto generate the present.html file \n";
                 $readme_content = file_get_contents("./source/{$file}/readme.md");
                 $search = [
                   '# Creative Coding / Visual Experiments',
@@ -177,10 +184,15 @@ if (is_dir($dir)) {
                 ];
                 $replace = "";
                 $readme_content = str_replace($search, $replace, $readme_content);
+
+                // echo $readme_content;
+                // echo "\n";
+
                 $presentation_data .= $Parsedown->text($readme_content);
                 $line = preg_split('#\r?\n#', trim($readme_content), 0)[0];
                 $presentation_data .= "<a href='".file_get_contents("./source/{$file}/repository_link.txt")."'>Git repository</a>";
                 file_put_contents("./docs/{$file}/present.html", $presentation_data);
+
 
                 $link_text = str_replace('creative_coding_', '', $file);
                 $repo_link = "<a href='".file_get_contents($dir.'/'.$file.'/repository_link.txt')."'>git</a>";
