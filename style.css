@@ -38,6 +38,10 @@ h3 {
   line-height: 1.4rem;
 }
 
+details summary {
+  outline: none;
+}
+
 details summary h3 {
   display:  inline-block;
   margin-block-start: 1em;
