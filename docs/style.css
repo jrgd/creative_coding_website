@@ -38,6 +38,7 @@ h3 {
   line-height: 1.4rem;
 }
 
+details,
 details summary {
   outline: none;
 }
