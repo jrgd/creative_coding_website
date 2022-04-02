@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('input').on('change', update_values);
+        // $('input').on('keyup', update_values);
+
+        function update_values(e) {
+          var ele = e.currentTarget;
+          className_array = $(ele).attr('class').split(' ');
+
+          var param = className_array[1];
+          var unit = $(ele).attr('unit');
+          var value = $(ele).val()+unit;
+          var selector = '#' + className_array[0];
+          
+          $(selector).css(param,value);
+          $(selector).css({'border':'10x solid red'});
+          // setTimeout(function(){ $(selector).css({'border':'unset'}); }, 500);
+          console.log(selector, param, value, unit);
+          console.log($(selector));
+
+          console.log($(selector).css('left'));
+        }
+      });
+    </script>
+
+    <style type="text/css">
+      h1 {
+        font-size:  1rem;
+        font-family: monospace;
+      }
+      input {
+        width: 40px;
+      }
+
+      div#visual_control {
+        position:  absolute;
+        bottom: 0;
+        border:  1px solid red;
+        height:  300px;
+        width:  100vw;
+      }
+
+      div#visual_control div.square {
+        position:  absolute;
+        width:  50px; 
+        height:  50px;
+        top:  100px;
+        left:  100px;
+      }
+      #slice_1 { background-color: red; }
+      #slice_2 { background-color: blue; }
+      #slice_3 { background-color: green; }
+      #slice_4 { background-color: orange; }
+      #slice_5 { background-color: lightgreen; }
+
+    </style>
+
+  </head>
+<body>
+
+  <div id='visual_control'>
+      <div id='slice_1' class='square'></div>
+      <div id='slice_2' class='square'></div>
+      <div id='slice_3' class='square'></div>
+      <div id='slice_4' class='square'></div>
+      <div id='slice_5' class='square'></div>
+  </div>
+
+  <div id='values_control'>
+    <h1>Left</h1>
+    <input type='number' class='slice_1 left' unit='px'>
+    <input type='number' class='slice_2 left' unit='px'>
+    <input type='number' class='slice_3 left' unit='px'>
+    <input type='number' class='slice_4 left' unit='px'>
+    <input type='number' class='slice_5 left' unit='px'>
+    <h1>Top</h1>
+    <input type='number' class='slice_1 top' unit='px'>
+    <input type='number' class='slice_2 top' unit='px'>
+    <input type='number' class='slice_3 top' unit='px'>
+    <input type='number' class='slice_4 top' unit='px'>
+    <input type='number' class='slice_5 top' unit='px'>
+    <h1>Width</h1>
+    <input type='number' class='slice_1 width' unit='px'>
+    <input type='number' class='slice_2 width' unit='px'>
+    <input type='number' class='slice_3 width' unit='px'>
+    <input type='number' class='slice_4 width' unit='px'>
+    <input type='number' class='slice_5 width' unit='px'>
+    <h1>Height</h1>
+    <input type='number' class='slice_1 height' unit='px'>
+    <input type='number' class='slice_2 height' unit='px'>
+    <input type='number' class='slice_3 height' unit='px'>
+    <input type='number' class='slice_4 height' unit='px'>
+    <input type='number' class='slice_5 height' unit='px'>
+  </div>
+
+</body>
+</html>
