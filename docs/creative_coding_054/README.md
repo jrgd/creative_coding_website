@@ -1,4 +1,4 @@
-macOS automatic screenshots from he command line
+macOS automatic screenshots from the command line
 
 # Creative Coding / Visual Experiments
 ## an ongoing coding/research seminar

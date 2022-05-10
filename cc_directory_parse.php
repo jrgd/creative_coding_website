@@ -52,8 +52,18 @@ $sections_list = [
     "51_kanban",
     "052",
     "054",
+    "057",
+    "058",
+    "059",
+  ],
+  "Simpler Tools" => [
+    "060",
+    "061",
   ]
 ];
+
+
+
 
 echo "### --- CREATIVE CODING\n";
 $file_number = 0;

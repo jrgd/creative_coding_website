@@ -24,3 +24,14 @@ https://creativecoding.xyz/
 ```yarn publishing```
   - will run cc_publish.sh
   - git commit and push to remote repositories; the ./docs is used to serve documents via Github pages
+
+
+  ## Updating content
+  - if it is the first time the repository is cloned on this machine and used: `composer install`
+  - publish the public repository; get the http url to clone
+  - insert the url in `install_repositories.php`
+  - use the number part of the repo name to assign this repository to a section, in `cc_directory_parse.php`
+  - yarn clone_repo
+  - yarn build
+  - check content and test
+  - git commit+push

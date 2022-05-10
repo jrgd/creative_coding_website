@@ -1,0 +1,30 @@
+<head>
+  <title>Creative Coding: Visual Experiments & Information Pipeline</title>
+  <!-- <base href="https://creativecoding.xyz/"> -->
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <h1>Creative Coding: Visual Experiments & Information Pipeline</h1>
+  <h2>an ongoing coding and research seminar</h2><div class='navigation'>
+  <a href='/index.html'>Index</a> | <a href='/notes.html'>Notes</a>
+</div>
+<hr><p>Grab tabs urls in Safari from Alfred into the clipboard</p>
+<h1>Creative Coding / Simpler Tools</h1>
+<h1>Grab tabs (Safari,Alfred,clipboard)</h1>
+<p>A simple AppleScript that works as a Workflow in Alfred.
+It grabs the url of each tabs in the front most window in Safari and list them (index, title, url) as a string in the clipboard; this can then be pasted in a text file and saved on disk.</p>
+<p>:+todo output format: css, markdown, html, text, json
+:+todo source from Chrome, Brave, etc.</p>
+<p><strong>Instructions</strong>: how to install in Alfred</p>
+<p>Manualy:</p>
+<ul>
+<li>Create a Trigger: Keyword; no argument needed.</li>
+<li>Create an Actions: Run script: OSASCRIPT (AppleScript)</li>
+<li>Create a Notifications</li>
+<li>connects the three</li>
+<li>open the action and paste the script in there</li>
+</ul>
+<p>Test: open some tabs in Safari; activate Alfred and type <code>grabtabs</code>; switch to Sublime Text, paste with ⌘V</p>
+<p>Drag/drop the workflow onto Alfred's preferences.
+Notes: There is a <code>Grabtabs.alfredworkflow</code> file that I exported from Alfred </p><a href='https://github.com/jrgd/creative_coding_060
+'>Git repository</a>

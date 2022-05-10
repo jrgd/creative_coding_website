@@ -1,0 +1,44 @@
+<head>
+  <title>Creative Coding: Visual Experiments & Information Pipeline</title>
+  <!-- <base href="https://creativecoding.xyz/"> -->
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <h1>Creative Coding: Visual Experiments & Information Pipeline</h1>
+  <h2>an ongoing coding and research seminar</h2><div class='navigation'>
+  <a href='/index.html'>Index</a> | <a href='/notes.html'>Notes</a>
+</div>
+<hr><p><p>a basic visual code editor: insert dom object via keyboard</p>
+<h1>Creative Coding / Simpler Tools</h1>
+<p>After reading [<a href="https://rogovoy.me/blog/writing-html-sucks">https://rogovoy.me/blog/writing-html-sucks</a>](), I found it interesting to develop the idea given the fundamentals developped in the Calligraphy prototype.
+Ideally packaged as a single line script, this should let edit/create/delete any div element on the page; and export them somehow.
+The main idea is to create a set of elements within elements (sort of russian-dolls, reminiscent somehow to the cms i had developed for the early days of kitsuné). The user would have the ability to control these elements, somehow (at the moment: make the block's content editable, insert new element, if the element already a child, use flex style, and control if we use row or column). A simple tool to write and automate html code.</p>
+<p>All this happening via keyboard:</p>
+<ul>
+<li>Tab: cycle through the focus-able elements</li>
+<li>Enter: switch contentEditable property on/off</li>
+<li>+: insert a new element within the active element</li>
+<li>r: flex with direction: row</li>
+<li>c: flex with direction: column</li>
+</ul>
+<p>nb: mouse can also be used to point and click the active element</p>
+<p>Possible development to explore:</p>
+<ul>
+<li>multiple selection</li>
+<li>write custom css, assign it to element</li>
+<li>move block with arrows (+alt+meta to increment); position absolute/fixed</li>
+<li>place marker and grids</li>
+</ul><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_061
+'>Git repository</a></p><hr>
+
+<form action="https://tinyletter.com/jrgd" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/jrgd', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+  <p><label for="tlemail">Subscribe via email</label></p>
+  <p><input type="text" name="email" id="tlemail" /></p>
+  <p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /></p>
+</form>
+
+Repository for this website (assemble, build, deploy): <a href='https://github.com/jrgd/creative_coding_website' target=_blank>https://github.com/jrgd/creative_coding_website</a><br>
+Main website: <a href='https://creativecoding.xyz' target=_blank>CreativeCoding.xyz</a><br>
+Author: <a href='http://jeromerigaud.com'>Jerome Rigaud</a>
+</body>
+</html>

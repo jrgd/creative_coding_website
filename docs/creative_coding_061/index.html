@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Code Editor - prototype</title>
+           <!-- visual-code-editor -->
+
+  <style>
+    
+    html body div {
+      border:  1px dashed rgba(255,0,0,0.2);
+      margin:  -1px;
+      display:  block;
+      width:  inherit;
+      height:  inherit;
+      outline:  none;
+      padding:  5px;
+      color:  rgb(200,200,200);
+      min-height:  50px;
+    }
+
+    html body div:focus {
+      border: 1px dashed red !important;
+    }
+
+    div.flexing {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    div.flexing_row {
+      flex-direction: row;
+    }
+
+    div.flexing_col {
+      flex-direction: column;
+    }
+
+    div.flexing div {
+      width: auto;
+      flex-grow:  1;
+    }
+  </style>
+  <script type="text/javascript">
+    
+
+    // CAPTURE KEYBOARD EVENTS TO CREATE/MODIFY DOM ELEMENTS
+    // Tab to select an elemnt
+    // Arrows to move it around
+    // + to create a new element within the selected container
+    // - to delete an element
+    // ENTER to switch the contenteditable
+
+    document.addEventListener('keydown', function(event){
+
+      switch(event.key) {
+        
+        case "r":
+          document.activeElement.classList.add("flexing_row");
+          document.activeElement.classList.remove('flexing_col');
+          break;
+
+        case "c":
+          document.activeElement.classList.add("flexing_col");
+          document.activeElement.classList.remove('flexing_row');
+          break;
+
+        case "Tab":
+          // should select the next div 
+          console.log(document.activeElement);
+          break;
+
+        case "+":
+          // insert an element within the element
+          if (document.activeElement.hasChildNodes()){
+            document.activeElement.classList.add("flexing");
+            document.activeElement.classList.add("flexing_row");
+          } else {
+            //
+          }
+          const insert_element = document.createElement("div");
+          insert_element_att = document.createAttribute("tabindex");
+          insert_element_att.value = "1";
+          insert_element.setAttributeNode(insert_element_att);
+          // random id
+          var random_id = btoa(Math.random().toString()).substr(10, 5);
+          insert_element_id = document.createAttribute("id");
+          insert_element_id.value = random_id;
+          insert_element.setAttributeNode(insert_element_id);
+          insert_element.innerHTML = '<!--inserted-->';
+          document.activeElement.appendChild(insert_element);
+          break;
+
+        case "-":
+          // remove the selected element
+          break;
+
+        case "Enter":
+          if (document.activeElement.getAttribute("contenteditable") === null || document.activeElement.getAttribute("contenteditable") == 'false') {
+            document.activeElement.contentEditable = "true";
+            document.activeElement.focus();
+            document.activeElement.click(); 
+          } else {
+            document.activeElement.contentEditable = "false";
+          }
+          break;
+        default: 
+          console.log(event.key + ' (' + event.code + ') not assigned');
+          break;
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div id='first_container' tabindex="1" id='first_element'>
+  </div>
+  <div id='another_container' tabindex="1" id='second_element'>
+  </div>
+</body>
+</html>
