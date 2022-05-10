@@ -32,6 +32,7 @@ https://creativecoding.xyz/
   - insert the url in `install_repositories.php`
   - use the number part of the repo name to assign this repository to a section, in `cc_directory_parse.php`
   - yarn clone_repo
+  - yarn clone_notes
   - yarn build
   - check content and test
   - git commit+push
