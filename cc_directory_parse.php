@@ -339,6 +339,8 @@ $index_content = "";
 $index_content .= $default_header;
 $index_content .= $default_menu;
 $index_content .= "<h2>Notes</h2><div class='notes'>";
+
+$notes_links = "<a href='https://journal.creativecoding.xyz/'>Journal</a><br>";
 $index_content .= $notes_links;
 $index_content .= "</div><h2>Experiments</h2>";
 foreach ($output_array as $section_title => $section_content) {
