@@ -14,11 +14,24 @@ All this happening via keyboard:
 - +: insert a new element within the active element
 - r: flex with direction: row
 - c: flex with direction: column
+- #, then space: insert a title, H1
+- ##, then space: insert H2
+- ###, then space: insert H3 … etc down to H6
+- f: free floar element (position absolute)
+- arrow keys: move element
+- w, then arrow keys: change the active element's width; up and down are +/-10 and left/right are +/-1
+- h, then arrow keys: change the active element's height; up and down are +/-10 and left/right are +/-1
 
-nb: mouse can also be used to point and click the active element
+nb: mouse can also be used to point and click the active element (select) and drag the elemnt around (once it's free float)
 
 Possible development to explore:
-- multiple selection
-- write custom css, assign it to element
-- move block with arrows (+alt+meta to increment); position absolute/fixed
+- insert <img> block and upload images
+- multiple selection of blocks
+- code editor: write custom css, assign it to element
+- code editor: write custom html, insert it inside an element
+- markdown editor; insert content inside an element
 - place marker and grids
+
+Notes
+- if a parent is draggable, its children wont be editable
+- document.activeElement wont let style be set onto DOM element; we need to grab the id first and then use document.getElementById; YAY! Fun!

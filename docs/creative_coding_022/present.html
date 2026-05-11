@@ -11,7 +11,7 @@
 <hr><p><p>Drawing a faded rectangle, then drawing the same shape but moving the top-right point 10px to the right—over and over (SVG, loop)</p><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_022
 '>Git repository</a></p><pre><code>$(document).ready(function(){
 
-  $board = $('#board');
+  $board = $(&#039;#board&#039;);
   var ii = 0;
   var step_increment = 20; 
   var adding_lines = setInterval(add_a_line, 500);
@@ -47,7 +47,7 @@
       +pointC_x+&quot;,&quot;+pointC_y+&quot; &quot;
       +pointD_x+&quot;,&quot;+pointD_y+&quot; &quot;;
 
-    var one_rectangle = {points: points_coordinates, color:'rgba(255,255,255, 0.05)', stroke_color: 'black', stroke_width:0.2};
+    var one_rectangle = {points: points_coordinates, color:&#039;rgba(255,255,255, 0.05)&#039;, stroke_color: &#039;black&#039;, stroke_width:0.2};
     $new_rectangle = $(document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;)).attr({
         &quot;points&quot;: one_rectangle.points,
         &quot;style&quot;: &quot;fill:&quot;+one_rectangle.color+&quot;;stroke:&quot;+one_rectangle.stroke_color+&quot;;stroke-width:&quot;+one_rectangle.stroke_width+&quot;;fill-rule:nonzero;&quot;

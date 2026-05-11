@@ -15,15 +15,15 @@
   
 
 
-  $('#generate').on('click', function(){
-    $('#container').empty();
+  $(&#039;#generate&#039;).on(&#039;click&#039;, function(){
+    $(&#039;#container&#039;).empty();
 
-    var data = $('#data').val();
+    var data = $(&#039;#data&#039;).val();
 
-    var data_array = data.split('\n');
+    var data_array = data.split(&#039;\n&#039;);
     console.log(data_array);
 
-    // what's the max length
+    // what&#039;s the max length
     var longest_columns = data_array.reduce( 
     // reduce = take a pair of values from the array,
     // they will both be replaced by the returned value
@@ -36,7 +36,7 @@
 
 
     $(data_array).each(function(index, element){
-      var text_padding = '0'.repeat( longest_columns - data_array[index].length );
+      var text_padding = &#039;0&#039;.repeat( longest_columns - data_array[index].length );
       data_array[index] = data_array[index] + text_padding;
       console.log(data_array)
     }) 
@@ -57,17 +57,17 @@
 
         
 
-        var single_square = $('&lt;div&gt;')
-            .addClass('single_square')
-            .addClass('c'+col_u)
-            .addClass('r'+row_u)
-            .css({'top':(row_u*30), 'left':(col_u*30)});
+        var single_square = $(&#039;&lt;div&gt;&#039;)
+            .addClass(&#039;single_square&#039;)
+            .addClass(&#039;c&#039;+col_u)
+            .addClass(&#039;r&#039;+row_u)
+            .css({&#039;top&#039;:(row_u*30), &#039;left&#039;:(col_u*30)});
         
           single_square.text(data_array[row_u][col_u]);
         
         
 
-        $('#container').append(single_square);
+        $(&#039;#container&#039;).append(single_square);
         character++;
       }
     }

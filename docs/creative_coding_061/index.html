@@ -7,20 +7,26 @@
            <!-- visual-code-editor -->
 
   <style>
-    
-    html body div {
-      border:  1px dashed rgba(255,0,0,0.2);
+    html body {
+      background-color:  #333;
+      width:  calc(100vw - 2rem);
+      height:  calc(100vh - 2rem);
+      margin:  0;
+      padding:  1rem;
+    }
+    html body * {
+      border:  1px dashed rgba(255,0,0,0.5);
       margin:  -1px;
       display:  block;
-      width:  inherit;
-      height:  inherit;
+      width:  100%;
+      height:  50px;
       outline:  none;
       padding:  5px;
       color:  rgb(200,200,200);
       min-height:  50px;
     }
 
-    html body div:focus {
+    html body *:focus {
       border: 1px dashed red !important;
     }
 
@@ -42,6 +48,19 @@
       width: auto;
       flex-grow:  1;
     }
+
+    .free_float {
+      position: fixed;
+      width:  100%;
+      height:  50px;
+    }
+
+    .free_float:after {
+      content: " ";
+      width: 20px;
+      height: 20px;
+      background-color: black;
+    }
   </style>
   <script type="text/javascript">
     
@@ -52,6 +71,7 @@
     // + to create a new element within the selected container
     // - to delete an element
     // ENTER to switch the contenteditable
+    var previous_chars_buffer = "";
 
     document.addEventListener('keydown', function(event){
 
@@ -80,7 +100,7 @@
           } else {
             //
           }
-          const insert_element = document.createElement("div");
+          var insert_element = document.createElement("div");
           insert_element_att = document.createAttribute("tabindex");
           insert_element_att.value = "1";
           insert_element.setAttributeNode(insert_element_att);
@@ -97,11 +117,94 @@
           // remove the selected element
           break;
 
+        case "w":
+          previous_chars_buffer = 'w';
+          break;
+        case "h":
+          previous_chars_buffer = 'h';
+          break;
+
+        case "ArrowUp":
+          if (previous_chars_buffer == 'w') {
+            resize_element(10, 0);
+          } else if (previous_chars_buffer == 'h') {
+            resize_element(0, 10);
+          } else {
+            move_element(0, -10);  
+          }
+          break;
+
+        case "ArrowDown":
+          if (previous_chars_buffer == 'w') {
+            resize_element(-10, 0);
+          } else if (previous_chars_buffer == 'h') {
+            resize_element(0, -10);
+          } else {
+            move_element(0, 10);
+          }
+          break;
+
+        case "ArrowLeft":
+          if (previous_chars_buffer == 'w') {
+            resize_element(-1, 0);
+          } else if (previous_chars_buffer == 'h') {
+            resize_element(0, -1);
+          } else {
+            move_element(-10, 0);
+          }
+          break;
+
+        case "ArrowRight":
+          if (previous_chars_buffer == 'w') {
+            resize_element(1, 0);
+          } else if (previous_chars_buffer == 'h') {
+            resize_element(0, 1);
+          } else {
+            move_element(10, 0);
+          }
+          break;
+        case "f":
+          document.activeElement.classList.remove('flexing');
+          document.activeElement.classList.remove('flexing_row');
+          document.activeElement.classList.remove('flexing_column');
+          document.activeElement.classList.add('free_float');
+
+          document.activeElement.setAttribute('draggable','true');
+          document.activeElement.addEventListener('dragstart', drag);
+
+          document.getElementsByTagName('body')[0].addEventListener('drop', drop);
+          document.getElementsByTagName('body')[0].addEventListener('dragover', allowDrop);
+          break;
+
+        case "#":
+        case "t":
+          previous_chars_buffer += "#";
+          break;
+        case " ":
+          var how_many_levels = Math.min(7, previous_chars_buffer.length);
+          console.log("H"+how_many_levels+': '+previous_chars_buffer);
+
+          var insert_element = document.createElement("h"+how_many_levels);
+          insert_element_att = document.createAttribute("tabindex");
+          insert_element_att.value = "1";
+          insert_element.setAttributeNode(insert_element_att);
+          // random id
+          var random_id = btoa(Math.random().toString()).substr(10, 5);
+          insert_element_id = document.createAttribute("id");
+          insert_element_id.value = random_id;
+          insert_element.setAttributeNode(insert_element_id);
+          insert_element.innerHTML = 'A Title';
+          document.activeElement.appendChild(insert_element);
+
+          previous_chars_buffer = "";
+          break;
+
+
         case "Enter":
           if (document.activeElement.getAttribute("contenteditable") === null || document.activeElement.getAttribute("contenteditable") == 'false') {
             document.activeElement.contentEditable = "true";
             document.activeElement.focus();
-            document.activeElement.click(); 
+            document.activeElement.click();
           } else {
             document.activeElement.contentEditable = "false";
           }
@@ -111,6 +214,62 @@
           break;
       }
     });
+
+    function drag(ev) {
+      console.log(ev);
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    function drop(ev) {
+      ev.preventDefault();
+      var pos_x = ev.clientX;
+      var pos_y = ev.clientY;
+      console.log('Drop: ('+pos_x+','+pos_y+')');
+      var data = ev.dataTransfer.getData("text");
+      // ev.target.appendChild(document.getElementById(data));
+      console.log(document.getElementById(data));
+      document.getElementById(data).style.left = pos_x+"px"; //first_container
+      document.getElementById(data).style.top = pos_y+"px";
+      
+    }
+    function resize_element(add_x, add_y){
+      console.log(add_x, add_y);
+      var current_width = parseInt(window.getComputedStyle(document.activeElement, null).width);
+      if ( isNaN(current_width) ) { 
+        current_width = document.activeElement.getBoundingClientRect().width; 
+      }
+      var current_height = parseInt(window.getComputedStyle(document.activeElement, null).height);
+      if ( isNaN(current_height) ) { 
+        current_height = document.activeElement.getBoundingClientRect().height; 
+      }
+      var width = current_width + (add_x ) ; // removes the padding
+      var height = current_height + (add_y ) ;
+
+      var ele_id = document.activeElement.id;
+      document.getElementById(ele_id).style.width = width+"px";
+      document.getElementById(ele_id).style.height = height+"px";
+    }
+    function move_element(add_x, add_y){
+      console.log('move element; '+(add_x, add_y));
+      active_element = document.activeElement;
+      if (active_element.classList.contains('free_float')){
+        pos_x = getOffset(active_element).left + add_x;
+        pos_y = getOffset(active_element).top + add_y;
+        active_element.style.left = pos_x+"px"; //first_container
+        active_element.style.top = pos_y+"px";
+      }
+    }
+
+    function getOffset(el) {
+      const rect = el.getBoundingClientRect();
+      return {
+        left: rect.left + window.scrollX + 1, // adds 1 because of borders
+        top: rect.top + window.scrollY + 1    // adds 1 because of borders
+      };
+    }
+
   </script>
 </head>
 <body>

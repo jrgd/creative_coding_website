@@ -10,19 +10,19 @@
 </div>
 <hr><p><p>Copy image to new image (lower resolution), then parse pixels colors from images and create svg (jquery, canvas, svg)</p><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_032
 '>Git repository</a></p><pre><code>$(document).ready(function(){
-  $board = $('#board');
-  var img = document.getElementById('source_image');
-  var canvas = document.createElement('canvas');
+  $board = $(&#039;#board&#039;);
+  var img = document.getElementById(&#039;source_image&#039;);
+  var canvas = document.createElement(&#039;canvas&#039;);
   var k = 5;
   canvas.width = img.width/k;
   canvas.height = img.height/k;
-  canvas.getContext('2d').drawImage(img, 0, 0, img.width/k, img.height/k);
+  canvas.getContext(&#039;2d&#039;).drawImage(img, 0, 0, img.width/k, img.height/k);
 
   //resizing svg #board
-  $board.css({'width':img.width, 'height':img.height});
+  $board.css({&#039;width&#039;:img.width, &#039;height&#039;:img.height});
   // resizing the copy image
-  $('#dest_image_container').append(canvas);
-  $('#dest_image_container canvas').css({'width':img.width, 'height':img.height});
+  $(&#039;#dest_image_container&#039;).append(canvas);
+  $(&#039;#dest_image_container canvas&#039;).css({&#039;width&#039;:img.width, &#039;height&#039;:img.height});
 
 // data manipulation on image
   var context = canvas.getContext(&quot;2d&quot;);
@@ -70,7 +70,7 @@
         +pointC_x+&quot;,&quot;+pointC_y+&quot; &quot;
         +pointD_x+&quot;,&quot;+pointD_y+&quot; &quot;;
 
-      var one_pixel = {points: points_coordinates, color: svg_rgba_color, stroke_color: 'black', stroke_width:0};
+      var one_pixel = {points: points_coordinates, color: svg_rgba_color, stroke_color: &#039;black&#039;, stroke_width:0};
       $new_rectangle = $(document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;)).attr({
           &quot;points&quot;: one_pixel.points,
           &quot;style&quot;: &quot;fill:&quot;+one_pixel.color+&quot;;stroke:&quot;+one_pixel.stroke_color+&quot;;stroke-width:&quot;+one_pixel.stroke_width+&quot;;fill-rule:nonzero;&quot;

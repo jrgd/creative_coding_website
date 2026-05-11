@@ -25,7 +25,7 @@
 </ul><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_001
 '>Git repository</a></p><pre><code>$(document).ready(function(){
 
-  $board = $('#board');
+  $board = $(&#039;#board&#039;);
 
   var origin_x = 10;
   var origin_y = 10;
@@ -79,9 +79,9 @@
           current_origin_x+&quot;,&quot;+current_origin_y;
 
         var polygons_points = [
-          {points:top_face, color:'transparent', stroke_color:'white', stroke_width:1},
-          {points:side_face, color:'transparent', stroke_color:'white', stroke_width:1},
-          {points:front_face, color:'transparent', stroke_color:'white', stroke_width:1},
+          {points:top_face, color:&#039;transparent&#039;, stroke_color:&#039;white&#039;, stroke_width:1},
+          {points:side_face, color:&#039;transparent&#039;, stroke_color:&#039;white&#039;, stroke_width:1},
+          {points:front_face, color:&#039;transparent&#039;, stroke_color:&#039;white&#039;, stroke_width:1},
           ];
 
         patterns.push(polygons_points);

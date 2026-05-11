@@ -11,7 +11,7 @@
 <hr><p><p>Draw letterforms using circles; export/save SVG file (SVG)</p><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_002
 '>Git repository</a></p><pre><code>$(document).ready(function(){
 
-  $board = $('#board');
+  $board = $(&#039;#board&#039;);
 
 
   var center_x = $(window).width() / 2;
@@ -52,7 +52,7 @@ function draw_a_circle(origin_x, origin_y, radius, stroke_width) {
     var single_line = center_x+&quot;,&quot;+center_y+&quot; &quot;
       +pointA_x+&quot;,&quot;+pointA_y;
 
-    var one_line = {points: single_line, color:'transparent', stroke_color:'white', stroke_width:stroke_width};
+    var one_line = {points: single_line, color:&#039;transparent&#039;, stroke_color:&#039;white&#039;, stroke_width:stroke_width};
     all_lines.push(one_line);
   }
 }
@@ -70,38 +70,38 @@ function draw_a_circle(origin_x, origin_y, radius, stroke_width) {
     });
   
 
-  // $('#board').on('click', function(){  } );
+  // $(&#039;#board&#039;).on(&#039;click&#039;, function(){  } );
   exportSVG();
 });
 
 
-var exportSVG = function(svg = $('#board').get(0) ) {
-  // first create a clone of our svg node so we don't mess the original one
+var exportSVG = function(svg = $(&#039;#board&#039;).get(0) ) {
+  // first create a clone of our svg node so we don&#039;t mess the original one
   var clone = svg.cloneNode(true);
   // parse the styles
   parseStyles(clone);
 
   // create a doctype
-  var svgDocType = document.implementation.createDocumentType('svg', &quot;-//W3C//DTD SVG 1.1//EN&quot;, &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;);
+  var svgDocType = document.implementation.createDocumentType(&#039;svg&#039;, &quot;-//W3C//DTD SVG 1.1//EN&quot;, &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;);
   // a fresh svg document
-  var svgDoc = document.implementation.createDocument('http://www.w3.org/2000/svg', 'svg', svgDocType);
+  var svgDoc = document.implementation.createDocument(&#039;http://www.w3.org/2000/svg&#039;, &#039;svg&#039;, svgDocType);
   // replace the documentElement with our clone 
   svgDoc.replaceChild(clone, svgDoc.documentElement);
   // get the data
   var svgData = (new XMLSerializer()).serializeToString(svgDoc);
 
-  // now you've got your svg data, the following will depend on how you want to download it
+  // now you&#039;ve got your svg data, the following will depend on how you want to download it
   // e.g yo could make a Blob of it for FileSaver.js
   /*
-  var blob = new Blob([svgData.replace(/&gt;&lt;/g, '&gt;\n\r&lt;')]);
-  saveAs(blob, 'myAwesomeSVG.svg');
+  var blob = new Blob([svgData.replace(/&gt;&lt;/g, &#039;&gt;\n\r&lt;&#039;)]);
+  saveAs(blob, &#039;myAwesomeSVG.svg&#039;);
   */
-  // here I'll just make a simple a with download attribute
+  // here I&#039;ll just make a simple a with download attribute
 
-  var a = document.createElement('a');
-  a.href = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData.replace(/&gt;&lt;/g, '&gt;\n\r&lt;'));
-  a.download = 'myAwesomeSVG.svg';
-  a.innerHTML = 'download the svg file';
+  var a = document.createElement(&#039;a&#039;);
+  a.href = &#039;data:image/svg+xml; charset=utf8, &#039; + encodeURIComponent(svgData.replace(/&gt;&lt;/g, &#039;&gt;\n\r&lt;&#039;));
+  a.download = &#039;myAwesomeSVG.svg&#039;;
+  a.innerHTML = &#039;download the svg file&#039;;
   document.body.appendChild(a);
 
 };
@@ -121,14 +121,14 @@ var parseStyles = function(svg) {
     return;
   }
 
-  var defs = svg.querySelector('defs') || document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  var defs = svg.querySelector(&#039;defs&#039;) || document.createElementNS(&#039;http://www.w3.org/2000/svg&#039;, &#039;defs&#039;);
   if (!defs.parentNode) {
     svg.insertBefore(defs, svg.firstElementChild);
   }
   svg.matches = svg.matches || svg.webkitMatchesSelector || svg.mozMatchesSelector || svg.msMatchesSelector || svg.oMatchesSelector;
 
 
-  // iterate through all document's stylesheets
+  // iterate through all document&#039;s stylesheets
   for (i = 0; i &lt; styleSheets.length; i++) {
     var currentStyle = styleSheets[i]
 
@@ -139,14 +139,14 @@ var parseStyles = function(svg) {
       continue;
     }
     // create a new style element
-    var style = document.createElement('style');
-    // some stylesheets can't be accessed and will throw a security error
+    var style = document.createElement(&#039;style&#039;);
+    // some stylesheets can&#039;t be accessed and will throw a security error
     var l = rules &amp;&amp; rules.length;
     // iterate through each cssRules of this stylesheet
     for (var j = 0; j &lt; l; j++) {
       // get the selector of this cssRules
       var selector = rules[j].selectorText;
-      // probably an external stylesheet we can't access
+      // probably an external stylesheet we can&#039;t access
       if (!selector) {
         continue;
       }
@@ -156,19 +156,19 @@ var parseStyles = function(svg) {
 
         var cssText = rules[j].cssText;
         // append it to our &lt;style&gt; node
-        style.innerHTML += cssText + '\n';
+        style.innerHTML += cssText + &#039;\n&#039;;
       }
     }
     // if we got some rules
     if (style.innerHTML) {
-      // append the style node to the clone's defs
+      // append the style node to the clone&#039;s defs
       defs.appendChild(style);
     }
   }
 
 };
 
-// exportSVG(document.getElementById('mySVG'));</code></pre><hr>
+// exportSVG(document.getElementById(&#039;mySVG&#039;));</code></pre><hr>
 
 <form action="https://tinyletter.com/jrgd" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/jrgd', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
   <p><label for="tlemail">Subscribe via email</label></p>

@@ -108,6 +108,8 @@ $index_notes_content = "";
 $index_notes_content .= $default_header;
 $index_content .= $default_menu;
 $index_notes_content .= "<h2>Notes</h2>";
+
+$notes_links = "<a href='https://journal.creativecoding.xyz/'>Journal</a><br>";
 $index_notes_content .= $notes_links;
 $index_notes_content .= $default_footer;
 

@@ -12,27 +12,27 @@
 '>Git repository</a></p><pre><code>$(document).ready(function(){
 
   var cx = 5, cy = 5;
-  $('body').on('keyup', function(k){
+  $(&#039;body&#039;).on(&#039;keyup&#039;, function(k){
     var keypressed = k.originalEvent.key;
     console.log(k);
     console.log(keypressed, cx, cy);
-    $('.single_square').removeClass('selected');
+    $(&#039;.single_square&#039;).removeClass(&#039;selected&#039;);
     switch(true) {
-      case keypressed == 'w':
+      case keypressed == &#039;w&#039;:
         cy = cy - 1;
         break;
-      case keypressed == 'a':
+      case keypressed == &#039;a&#039;:
         cx = cx - 1;
         break;
-      case keypressed == 's':
+      case keypressed == &#039;s&#039;:
         cy = cy + 1;
         break;
-      case keypressed == 'd':
+      case keypressed == &#039;d&#039;:
         cx = cx + 1;
         break;
     }
     console.log(keypressed, cx, cy);
-    $('.c'+cx+'.r'+cy).addClass('selected');
+    $(&#039;.c&#039;+cx+&#039;.r&#039;+cy).addClass(&#039;selected&#039;);
 
 
   });
@@ -41,13 +41,13 @@
   var units_y = 11;
   for (row_u = 0; row_u &lt; units_y; row_u++) {
     for (col_u = 0; col_u &lt; units_x; col_u++) {
-      var single_square = $('&lt;div&gt;')
-          .addClass('single_square')
-          .addClass('c'+col_u)
-          .addClass('r'+row_u)
-          .css({'top':(row_u*30), 'left':(col_u*30)});
+      var single_square = $(&#039;&lt;div&gt;&#039;)
+          .addClass(&#039;single_square&#039;)
+          .addClass(&#039;c&#039;+col_u)
+          .addClass(&#039;r&#039;+row_u)
+          .css({&#039;top&#039;:(row_u*30), &#039;left&#039;:(col_u*30)});
 
-      $('#container').append(single_square);
+      $(&#039;#container&#039;).append(single_square);
     }
   }
 });</code></pre><hr>

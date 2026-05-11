@@ -12,12 +12,12 @@
 '>Git repository</a></p><pre><code>
 $(document).ready(function(){
 
-  var canvas2 = document.getElementById('canvas2');
-  var ctx2 = canvas2.getContext('2d');
+  var canvas2 = document.getElementById(&#039;canvas2&#039;);
+  var ctx2 = canvas2.getContext(&#039;2d&#039;);
   var xii =0;
-  var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
-  var video = document.getElementById('video');
+  var canvas = document.getElementById(&#039;canvas&#039;);
+  var ctx = canvas.getContext(&#039;2d&#039;);
+  var video = document.getElementById(&#039;video&#039;);
   
 
   video.addEventListener( &quot;loadedmetadata&quot;, function (e) {
@@ -37,7 +37,7 @@ $(document).ready(function(){
       ctx2.clearRect( 0, 0, canvas.width*10, canvas.height);
       
       $(function() { 
-        video.addEventListener('play', function() {
+        video.addEventListener(&#039;play&#039;, function() {
           var $this = this; //cache
           (function loop() {
             if (!$this.paused &amp;&amp; !$this.ended) {
@@ -54,7 +54,7 @@ $(document).ready(function(){
         xii = xii + 10;
         if (xii &gt; canvas.width*10) {
           // copy the image
-          $( cloneCanvas(canvas2) ).prependTo('#canvas_storage');
+          $( cloneCanvas(canvas2) ).prependTo(&#039;#canvas_storage&#039;);
           //save the image
 
           xii = 0;
@@ -77,8 +77,8 @@ $(document).ready(function(){
 function cloneCanvas(oldCanvas) {
 
     //create a new canvas
-    var newCanvas = document.createElement('canvas');
-    var context = newCanvas.getContext('2d');
+    var newCanvas = document.createElement(&#039;canvas&#039;);
+    var context = newCanvas.getContext(&#039;2d&#039;);
 
     //set dimensions
     newCanvas.width = oldCanvas.width;

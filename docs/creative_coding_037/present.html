@@ -12,24 +12,24 @@
 '>Git repository</a></p><pre><code>var g_mousedown = false;
 
 $(document).ready(function(){
-  $board = $('#board');
-  var img = document.getElementById('source_image');
-  var canvas = document.createElement('canvas');
+  $board = $(&#039;#board&#039;);
+  var img = document.getElementById(&#039;source_image&#039;);
+  var canvas = document.createElement(&#039;canvas&#039;);
   var k = 1;
   canvas.width = img.width/k;
   canvas.height = img.height/k;
-  canvas.getContext('2d').drawImage(img, 0, 0, img.width/k, img.height/k);
+  canvas.getContext(&#039;2d&#039;).drawImage(img, 0, 0, img.width/k, img.height/k);
 
   var context = canvas.getContext(&quot;2d&quot;);
   var imgData = context.getImageData(0,0,canvas.width,canvas.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
 
   // resizing the copy image
-  $('#dest_image_container').append(canvas);
-  $('#dest_image_container canvas').css({'width':img.width, 'height':img.height});
+  $(&#039;#dest_image_container&#039;).append(canvas);
+  $(&#039;#dest_image_container canvas&#039;).css({&#039;width&#039;:img.width, &#039;height&#039;:img.height});
 
 
   
-  $('#dest_image_container canvas').on('mousemove', function(event){
+  $(&#039;#dest_image_container canvas&#039;).on(&#039;mousemove&#039;, function(event){
     image_data = get_color(event, imgData);
     console.log(image_data);
 
@@ -39,14 +39,14 @@ $(document).ready(function(){
     }
   });
 
-  $('#dest_image_container canvas').mousedown(function(event){
+  $(&#039;#dest_image_container canvas&#039;).mousedown(function(event){
     g_mousedown = true;
   });
-  $('#dest_image_container canvas').mouseup(function(event){
+  $(&#039;#dest_image_container canvas&#039;).mouseup(function(event){
     g_mousedown = false;
   });
 
-  $('#dest_image_container canvas').on('click', function(event){
+  $(&#039;#dest_image_container canvas&#039;).on(&#039;click&#039;, function(event){
     image_data = get_color(event, imgData);
 
     context.fillStyle = &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;;

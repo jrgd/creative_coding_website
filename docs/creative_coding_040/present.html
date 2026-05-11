@@ -10,37 +10,37 @@
 </div>
 <hr><p><p>Glitch: draw a line over an image usign the clicked pixel colour</p><br><a href='./index.html'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_040
 '>Git repository</a></p><pre><code>var g_mousedown = false;
-var direction = 'bottom';
-var active_tool = 'pixel_puller';
+var direction = &#039;bottom&#039;;
+var active_tool = &#039;pixel_puller&#039;;
 function setup_controls() {
 
-  var palette_image = ($('#selected_colour img').eq(0))[0];
-  var palette_canvas = document.createElement('canvas');
+  var palette_image = ($(&#039;#selected_colour img&#039;).eq(0))[0];
+  var palette_canvas = document.createElement(&#039;canvas&#039;);
   var palette_context = palette_canvas.getContext(&quot;2d&quot;);
   palette_context.drawImage(palette_image, 0, 0, 150, 150);
   var paletteData = palette_context.getImageData(0,0,palette_image.width,palette_image.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
 
-  $('body').on('keydown', function(k){
+  $(&#039;body&#039;).on(&#039;keydown&#039;, function(k){
     var keypressed = k.originalEvent.key;
     console.log(keypressed);
     switch(keypressed) {
       case &quot;q&quot;:
-        active_tool = 'pixel_puller';
+        active_tool = &#039;pixel_puller&#039;;
         break;
       case &quot;p&quot;:
-        active_tool = 'colour_picker';
+        active_tool = &#039;colour_picker&#039;;
         break;
       case &quot;ArrowUp&quot;:
-        direction = 'up';
+        direction = &#039;up&#039;;
         break;
       case &quot;ArrowDown&quot;:
-        direction = 'down';
+        direction = &#039;down&#039;;
         break;
       case &quot;ArrowLeft&quot;:
-        direction = 'left';
+        direction = &#039;left&#039;;
         break;
       case &quot;ArrowRight&quot;:
-        direction = 'right';
+        direction = &#039;right&#039;;
         break;
     }
 
@@ -48,13 +48,13 @@ function setup_controls() {
     $(&quot;#floating_palette input[name=direction]&quot;).val(direction);
   });
 
-  $('#selected_colour').on('mousedown', function(){
-    $(this).find('img').show();
+  $(&#039;#selected_colour&#039;).on(&#039;mousedown&#039;, function(){
+    $(this).find(&#039;img&#039;).show();
   });
-  $('#selected_colour').on('mouseup', function(event){
+  $(&#039;#selected_colour&#039;).on(&#039;mouseup&#039;, function(event){
     palette_colour_data = get_color(event, paletteData);
-    $('#selected_colour').css({'background-color':&quot;rgba(&quot;+palette_colour_data.r+&quot;, &quot;+palette_colour_data.g+&quot;, &quot;+palette_colour_data.b+&quot;, &quot;+palette_colour_data.a+&quot;)&quot;})
-    // $(this).find('img').hide();
+    $(&#039;#selected_colour&#039;).css({&#039;background-color&#039;:&quot;rgba(&quot;+palette_colour_data.r+&quot;, &quot;+palette_colour_data.g+&quot;, &quot;+palette_colour_data.b+&quot;, &quot;+palette_colour_data.a+&quot;)&quot;})
+    // $(this).find(&#039;img&#039;).hide();
   });
 }
 $(document).ready(function(){
@@ -63,18 +63,18 @@ $(document).ready(function(){
 
   setup_images();
 
-  var dropZone = document.getElementById('source_image_container');
+  var dropZone = document.getElementById(&#039;source_image_container&#039;);
   console.log(dropZone);
 
   // Optional.   Show the copy icon when dragging over.  Seems to only work for chrome.
-  dropZone.addEventListener('dragover', function(e) {
+  dropZone.addEventListener(&#039;dragover&#039;, function(e) {
       e.stopPropagation();
       e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
+      e.dataTransfer.dropEffect = &#039;copy&#039;;
   });
 
   // Get file data on drop
-  dropZone.addEventListener('drop', function(e) {
+  dropZone.addEventListener(&#039;drop&#039;, function(e) {
       e.stopPropagation();
       e.preventDefault();
       var files = e.dataTransfer.files; // Array of all files
@@ -85,12 +85,12 @@ $(document).ready(function(){
 
               reader.onload = function(e2) {
                   // finished reading file data.
-                  var img = document.createElement('img');
+                  var img = document.createElement(&#039;img&#039;);
                   img.src= e2.target.result;
-                  img.id = 'source_image';
+                  img.id = &#039;source_image&#039;;
                   // document.body.appendChild(img);
-                  $('#source_image_container *').remove();
-                  $('#source_image_container').append(img);
+                  $(&#039;#source_image_container *&#039;).remove();
+                  $(&#039;#source_image_container&#039;).append(img);
                   setup_images();
               }
 
@@ -120,39 +120,39 @@ function get_color(event, imgData) {
 }
 
 function setup_images() {
-  $board = $('#board');
-  var img = document.getElementById('source_image');
-  var canvas = document.createElement('canvas');
+  $board = $(&#039;#board&#039;);
+  var img = document.getElementById(&#039;source_image&#039;);
+  var canvas = document.createElement(&#039;canvas&#039;);
   var k = 1;
   canvas.width = img.width/k;
   canvas.height = img.height/k;
-  canvas.getContext('2d').drawImage(img, 0, 0, img.width/k, img.height/k);
+  canvas.getContext(&#039;2d&#039;).drawImage(img, 0, 0, img.width/k, img.height/k);
 
   var context = canvas.getContext(&quot;2d&quot;);
   var imgData = context.getImageData(0,0,canvas.width,canvas.height);// { data: [r,g,b,a,r,g,b,a,r,g,..], ... }
 
   // resizing the copy image
-  $('#dest_image_container img').remove();
-  $('#dest_image_container').append(canvas);
-  $('#dest_image_container canvas').css({'width':img.width, 'height':img.height});
+  $(&#039;#dest_image_container img&#039;).remove();
+  $(&#039;#dest_image_container&#039;).append(canvas);
+  $(&#039;#dest_image_container canvas&#039;).css({&#039;width&#039;:img.width, &#039;height&#039;:img.height});
 
 
   
-  $('#dest_image_container canvas').on('mousemove', function(event){
+  $(&#039;#dest_image_container canvas&#039;).on(&#039;mousemove&#039;, function(event){
     image_data = get_color(event, imgData);
     image_data.a = 0.25;
     // console.log(image_data);
 
     switch(active_tool) {
-      case 'colour_picker':
-        // $('#selected_colour').css({'background-color':&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
+      case &#039;colour_picker&#039;:
+        // $(&#039;#selected_colour&#039;).css({&#039;background-color&#039;:&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
         break;
-      case 'pixel_puller':
+      case &#039;pixel_puller&#039;:
       default:
-        var gradient_final_color = $('#selected_colour').css('background-color'); //$('select[name=gradient_final_colour]').find(&quot;:selected&quot;).val()
+        var gradient_final_color = $(&#039;#selected_colour&#039;).css(&#039;background-color&#039;); //$(&#039;select[name=gradient_final_colour]&#039;).find(&quot;:selected&quot;).val()
         gradient_final_color_array = gradient_final_color.match(/\d+/g).map(Number);
-        gradient_final_color_array.push( parseInt($('[name=gradient_final_colour_opacity]').val())/100 );
-        gradient_final_color = &quot;rgb(&quot;+gradient_final_color_array.join(',')+&quot;)&quot;;
+        gradient_final_color_array.push( parseInt($(&#039;[name=gradient_final_colour_opacity]&#039;).val())/100 );
+        gradient_final_color = &quot;rgb(&quot;+gradient_final_color_array.join(&#039;,&#039;)+&quot;)&quot;;
         console.log(gradient_final_color);
 
         if (g_mousedown === true) {
@@ -164,7 +164,7 @@ function setup_images() {
               var gradient = context.createLinearGradient(1,image_data.y, 1,0);
               gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
               gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
-              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              gradient.addColorStop(1, gradient_final_color); //&#039;rgba(0,0,0,0)&#039;
               context.fillStyle = gradient;
               context.fillRect(image_data.x, image_data.y, 1, image_data.y*-1 );
               break;
@@ -172,23 +172,23 @@ function setup_images() {
               var gradient = context.createLinearGradient(1,image_data.y, 1,img.height);
               gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
               gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
-              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              gradient.addColorStop(1, gradient_final_color); //&#039;rgba(0,0,0,0)&#039;
               context.fillStyle = gradient;
               context.fillRect(image_data.x, image_data.y, 1, img.height-image_data.y );
               break;
-            case 'right':
+            case &#039;right&#039;:
               var gradient = context.createLinearGradient(image_data.x,1, img.width,1);
               gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
               gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
-              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              gradient.addColorStop(1, gradient_final_color); //&#039;rgba(0,0,0,0)&#039;
               context.fillStyle = gradient;
               context.fillRect(image_data.x, image_data.y, img.width-image_data.x, 1 );
               break;
-            case 'left':
+            case &#039;left&#039;:
               var gradient = context.createLinearGradient(image_data.x,1, 0,1);
               gradient.addColorStop(0, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, 1)&quot;);
               gradient.addColorStop(0.25, &quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;);
-              gradient.addColorStop(1, gradient_final_color); //'rgba(0,0,0,0)'
+              gradient.addColorStop(1, gradient_final_color); //&#039;rgba(0,0,0,0)&#039;
               context.fillStyle = gradient;
               context.fillRect(image_data.x, image_data.y, image_data.x*-1, 1 );
               break;
@@ -200,14 +200,14 @@ function setup_images() {
 
   });
 
-  $('#dest_image_container canvas').mousedown(function(event){
+  $(&#039;#dest_image_container canvas&#039;).mousedown(function(event){
     g_mousedown = true;
   });
-  $('#dest_image_container canvas').mouseup(function(event){
+  $(&#039;#dest_image_container canvas&#039;).mouseup(function(event){
     g_mousedown = false;
-    if (active_tool == 'colour_picker') {
+    if (active_tool == &#039;colour_picker&#039;) {
       image_data = get_color(event, imgData);
-      $('#selected_colour').css({'background-color':&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
+      $(&#039;#selected_colour&#039;).css({&#039;background-color&#039;:&quot;rgba(&quot;+image_data.r+&quot;, &quot;+image_data.g+&quot;, &quot;+image_data.b+&quot;, &quot;+image_data.a+&quot;)&quot;})
     }
   });
 

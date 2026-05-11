@@ -13,7 +13,7 @@
 
 
 
-  $board = $('#board');
+  $board = $(&#039;#board&#039;);
 
   
   var origin_x = 500;
@@ -24,15 +24,15 @@
   var adding_lines = setInterval(add_a_line, 10);
   var steps_increment = 1;
 
-  // var colours_a = ['#00F', '#00e','#00d', '#00c', '#00b','#00a', '#009', '#008','#007', '#006', '#005','#004', '#003', '#002', '#001', '#002', '#003', '#004','#005', '#006', '#007', '#008',  '#009','#00a','#00b','#00c', '#00d', '#00e'];
-  // var colours_b = ['#0F0', '#0e0','#0d0', '#0c0', '#0b0','#0a0', '#090', '#080','#070', '#060', '#050','#040', '#030', '#020', '#010', '#020', '#030', '#040','#050', '#060', '#070', '#080',  '#090','#0a0','#0b0','#0c0', '#0d0', '#0e0'];
-  // var colours_c = ['#F00', '#e00','#d00', '#c00', '#b00','#a00', '#900', '#800','#700', '#600', '#500','#400', '#300', '#200', '#100', '#200', '#300', '#400','#500', '#600', '#700', '#800',  '#900','#a00','#b00','#c00', '#d00', '#e00'];
-  // var colours_d = colours_a; //['#003', '#002','001'];
+  // var colours_a = [&#039;#00F&#039;, &#039;#00e&#039;,&#039;#00d&#039;, &#039;#00c&#039;, &#039;#00b&#039;,&#039;#00a&#039;, &#039;#009&#039;, &#039;#008&#039;,&#039;#007&#039;, &#039;#006&#039;, &#039;#005&#039;,&#039;#004&#039;, &#039;#003&#039;, &#039;#002&#039;, &#039;#001&#039;, &#039;#002&#039;, &#039;#003&#039;, &#039;#004&#039;,&#039;#005&#039;, &#039;#006&#039;, &#039;#007&#039;, &#039;#008&#039;,  &#039;#009&#039;,&#039;#00a&#039;,&#039;#00b&#039;,&#039;#00c&#039;, &#039;#00d&#039;, &#039;#00e&#039;];
+  // var colours_b = [&#039;#0F0&#039;, &#039;#0e0&#039;,&#039;#0d0&#039;, &#039;#0c0&#039;, &#039;#0b0&#039;,&#039;#0a0&#039;, &#039;#090&#039;, &#039;#080&#039;,&#039;#070&#039;, &#039;#060&#039;, &#039;#050&#039;,&#039;#040&#039;, &#039;#030&#039;, &#039;#020&#039;, &#039;#010&#039;, &#039;#020&#039;, &#039;#030&#039;, &#039;#040&#039;,&#039;#050&#039;, &#039;#060&#039;, &#039;#070&#039;, &#039;#080&#039;,  &#039;#090&#039;,&#039;#0a0&#039;,&#039;#0b0&#039;,&#039;#0c0&#039;, &#039;#0d0&#039;, &#039;#0e0&#039;];
+  // var colours_c = [&#039;#F00&#039;, &#039;#e00&#039;,&#039;#d00&#039;, &#039;#c00&#039;, &#039;#b00&#039;,&#039;#a00&#039;, &#039;#900&#039;, &#039;#800&#039;,&#039;#700&#039;, &#039;#600&#039;, &#039;#500&#039;,&#039;#400&#039;, &#039;#300&#039;, &#039;#200&#039;, &#039;#100&#039;, &#039;#200&#039;, &#039;#300&#039;, &#039;#400&#039;,&#039;#500&#039;, &#039;#600&#039;, &#039;#700&#039;, &#039;#800&#039;,  &#039;#900&#039;,&#039;#a00&#039;,&#039;#b00&#039;,&#039;#c00&#039;, &#039;#d00&#039;, &#039;#e00&#039;];
+  // var colours_d = colours_a; //[&#039;#003&#039;, &#039;#002&#039;,&#039;001&#039;];
 
-  var colours_a = ['white', 'black'];
-  var colours_b = ['white', 'black'];
-  var colours_c = ['white', 'black'];
-  var colours_d = ['white', 'black'];
+  var colours_a = [&#039;white&#039;, &#039;black&#039;];
+  var colours_b = [&#039;white&#039;, &#039;black&#039;];
+  var colours_c = [&#039;white&#039;, &#039;black&#039;];
+  var colours_d = [&#039;white&#039;, &#039;black&#039;];
     
 
   
@@ -151,16 +151,16 @@
   }
 
 
-  var ws = new WebSocket('ws://localhost:8080/');
+  var ws = new WebSocket(&#039;ws://localhost:8080/&#039;);
   ws.onopen = function() {
-    console.log('CONNECT');
+    console.log(&#039;CONNECT&#039;);
   };
 
   ws.onclose = function() {
-    console.log('DISCONNECT');
+    console.log(&#039;DISCONNECT&#039;);
   };
   ws.onmessage = function(event) {
-    console.log('MESSAGE: ' + event.data);
+    console.log(&#039;MESSAGE: &#039; + event.data);
   };
 
   var frames = 1000;
@@ -171,7 +171,7 @@
   var hold = false;
   window.requestAnimationFrame = function rafOverride(callback) {
     // Find canvas
-    var canvas = document.querySelector('canvas');
+    var canvas = document.querySelector(&#039;canvas&#039;);
     if (canvas) {
       // Done capturing?
       if (frames &lt; 0) {
@@ -183,10 +183,10 @@
       if (!hold) {
         hold = true;
         frames--;
-        console.log('preparing: capture');
+        console.log(&#039;preparing: capture&#039;);
         setTimeout(function () {
           callback();
-          console.log('calling: capture');
+          console.log(&#039;calling: capture&#039;);
           capture(canvas, function () {
             // Resume rendering
             hold = false;
@@ -206,7 +206,7 @@
 
   function capture(canvas, callback) {
     // Capture image and strip header from string.
-    var image = canvas.toDataURL('image/png').slice(22);
+    var image = canvas.toDataURL(&#039;image/png&#039;).slice(22);
 
     // Writing image as msg
     ws.send(image);

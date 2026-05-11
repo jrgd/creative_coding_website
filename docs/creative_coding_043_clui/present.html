@@ -13,19 +13,19 @@
 var command_history_index = 0;
 
 $(document).ready(function(){
-  $('#clui_line').keyup(function(e){
+  $(&#039;#clui_line&#039;).keyup(function(e){
     switch(e.key) {
       case &quot;Enter&quot;:
         // execute the command
-        var command_to_execute = $('#clui_line').val();
-        console.log('Executing: '+command_to_execute);
+        var command_to_execute = $(&#039;#clui_line&#039;).val();
+        console.log(&#039;Executing: &#039;+command_to_execute);
         exec_command( command_to_execute );
         command_history_index = previous_command.push(command_to_execute) - 1;
         console.log(previous_command, command_history_index);
-        $('#clui_line').val(''); // RESET THE COMMAND LINE
+        $(&#039;#clui_line&#039;).val(&#039;&#039;); // RESET THE COMMAND LINE
         break;
       case &quot;ArrowUp&quot;:
-        $('#clui_line').val(previous_command[command_history_index]);
+        $(&#039;#clui_line&#039;).val(previous_command[command_history_index]);
         if (command_history_index &gt;= 0) {
           command_history_index--;
         } else {
@@ -33,7 +33,7 @@ $(document).ready(function(){
         }
         break;
       case &quot;ArrowDown&quot;:
-        $('#clui_line').val(previous_command[command_history_index]);
+        $(&#039;#clui_line&#039;).val(previous_command[command_history_index]);
         if (command_history_index &lt; previous_command.length) {
           command_history_index++;
         } else {
@@ -49,70 +49,70 @@ $(document).ready(function(){
 });
 
 function setup_interaction() {
-  $('li.command_history').on('click', function(){
+  $(&#039;li.command_history&#039;).on(&#039;click&#039;, function(){
     var old_is_new = $(this).text();
     console.log(old_is_new);
-    $('#clui_line').val( old_is_new );
-    $('#clui_line').focus();
+    $(&#039;#clui_line&#039;).val( old_is_new );
+    $(&#039;#clui_line&#039;).focus();
   })
 }
 function exec_command(command) {
   output_content_display = &quot;&quot;;
   command = command.toLowerCase();
-  $('#clui_content').html( $('#clui_content').html() + &quot;&lt;br&gt;&quot; + &quot;&amp;gt; &quot; + command );
+  $(&#039;#clui_content&#039;).html( $(&#039;#clui_content&#039;).html() + &quot;&lt;br&gt;&quot; + &quot;&amp;gt; &quot; + command );
   var output_content_display = &quot;&quot;;
 
   // PARSE THE COMMAND: ACTION AND ARGUMENTS
-  var command_array = command.split(' ');
+  var command_array = command.split(&#039; &#039;);
   var action = command_array[0];
 
-  if (action == 'open') {
+  if (action == &#039;open&#039;) {
     output_content_display = &quot;# Action: &quot;+action+&quot;&lt;br&gt;&quot;;
     for(var argument_index = 1; argument_index &lt; command_array.length; argument_index++) {
       output_content_display += &quot;# argument &quot;+argument_index+&quot;: &quot;+command_array[argument_index]+&quot;&lt;br&gt;&quot;;  
     }    
   }
 
-  if (action == 'list') {
+  if (action == &#039;list&#039;) {
     // AJAX load from server / php script
     command_array_json = JSON.stringify(command_array);
-    output_content_display += '[loading]';
-    $('#ajax_temp_output').load(
-      './server_commands.php',
-      {'command':command_array_json},
+    output_content_display += &#039;[loading]&#039;;
+    $(&#039;#ajax_temp_output&#039;).load(
+      &#039;./server_commands.php&#039;,
+      {&#039;command&#039;:command_array_json},
       function(response){
         update_display(response);
       }
     );
   }
 
-  if (action == 'history') {
+  if (action == &#039;history&#039;) {
     // array: previous_command
     output_content_display += &quot;&lt;b&gt;Previous commands&lt;/b&gt;&lt;ul&gt;&quot;;
     $(previous_command).each(function(i,el){
-      output_content_display += &quot;&lt;li class='command_history'&gt;&quot;+el+&quot;&lt;/li&gt;&quot;;
+      output_content_display += &quot;&lt;li class=&#039;command_history&#039;&gt;&quot;+el+&quot;&lt;/li&gt;&quot;;
     });
     output_content_display += &quot;&lt;/ul&gt;&quot;;
   }
 
   if (action == &quot;clear&quot;) {
-    $('#clui_content').html(&quot;&quot;);
+    $(&#039;#clui_content&#039;).html(&quot;&quot;);
   }
 
   // HIDDEN CONTENT TO BE DISPLAYED
   // about
   // help
-  if ( $('#hidden_information [data-command='+action+']').length &gt; 0 ) {
+  if ( $(&#039;#hidden_information [data-command=&#039;+action+&#039;]&#039;).length &gt; 0 ) {
 
-    if ( $('#hidden_information [data-command='+action+'] span[data-choice]').length &gt; 0 ) {
-      var random_answer_index = Math.floor(Math.random()*$('#hidden_information [data-command='+action+'] span[data-choice]').length);
-      // output_content_display += $('#hidden_information [data-command='+action+'] span[data-choice]').length +' possibilities.&lt;br&gt;';
-      // output_content_display += 'Random answer: #'+random_answer_index+'&lt;br&gt;';
+    if ( $(&#039;#hidden_information [data-command=&#039;+action+&#039;] span[data-choice]&#039;).length &gt; 0 ) {
+      var random_answer_index = Math.floor(Math.random()*$(&#039;#hidden_information [data-command=&#039;+action+&#039;] span[data-choice]&#039;).length);
+      // output_content_display += $(&#039;#hidden_information [data-command=&#039;+action+&#039;] span[data-choice]&#039;).length +&#039; possibilities.&lt;br&gt;&#039;;
+      // output_content_display += &#039;Random answer: #&#039;+random_answer_index+&#039;&lt;br&gt;&#039;;
 
-      var random_answer = $('#hidden_information [data-command='+action+'] span[data-choice]').eq(random_answer_index).html();
+      var random_answer = $(&#039;#hidden_information [data-command=&#039;+action+&#039;] span[data-choice]&#039;).eq(random_answer_index).html();
       output_content_display += random_answer;
     } else {
-      output_content_display += $('#hidden_information [data-command='+action+']').html();
+      output_content_display += $(&#039;#hidden_information [data-command=&#039;+action+&#039;]&#039;).html();
     }
     
   }
@@ -125,9 +125,9 @@ function exec_command(command) {
 }
 
 function update_display(output_content_display) {
-  $('#clui_content').html( $('#clui_content').html() + &quot;&lt;br&gt;&quot; + output_content_display );
-  var height_to_scroll = $('#clui_content').prop('scrollHeight');
-  $('div#clui_content').scrollTop( height_to_scroll );
+  $(&#039;#clui_content&#039;).html( $(&#039;#clui_content&#039;).html() + &quot;&lt;br&gt;&quot; + output_content_display );
+  var height_to_scroll = $(&#039;#clui_content&#039;).prop(&#039;scrollHeight&#039;);
+  $(&#039;div#clui_content&#039;).scrollTop( height_to_scroll );
   setup_interaction();
 }</code></pre><hr>
 

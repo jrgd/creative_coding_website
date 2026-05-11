@@ -8,22 +8,7 @@
   <h2>an ongoing coding and research seminar</h2><div class='navigation'>
   <a href='/index.html'>Index</a> | <a href='/notes.html'>Notes</a>
 </div>
-<hr><p><p>a simple software to write and think</p>
-<h1>Creative Coding / Information Pipeline</h1>
-<h2>a simple software to write and think</h2>
-<p>It's essentially a HTML page with ajax query onto PHP scripts to read and write files.
-It's still very rough on the edges.</p>
-<p><em>How to use</em>
-ie: notes to future-self, in a few months.</p>
-<ul>
-<li><code>composer install</code></li>
-<li><code>valet link writingthinking</code></li>
-<li>and then use a browser to visit the page writingthinking.test</li>
-</ul>
-<p><em>Documentation</em>
-Operators and meta/headers for txt and markdown files</p>
-<p><em>Thinking behind the project</em>
-This takes place directly in the ./documents </p><br><a href='./index.php'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_058
+<hr><p><br><a href='./index.php'>View the experiment</a><br><a href='https://github.com/jrgd/creative_coding_058
 '>Git repository</a></p><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -136,7 +121,7 @@ This takes place directly in the ./documents </p><br><a href='./index.php'>View 
 
     #textarea ul,
     #textarea ul li {
-      list-style-type: '&mdash; ';
+      list-style-type: &#039;&mdash; &#039;;
       list-style-position: inside;
     }
 
@@ -148,52 +133,52 @@ This takes place directly in the ./documents </p><br><a href='./index.php'>View 
 
   &lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot; integrity=&quot;sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
 
-  &lt;script src='./lib/interface_commands.js'type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script src=&#039;./lib/interface_commands.js&#039;type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
 
-    &lt;div id='container'&gt;
-      &lt;div id='col_1'&gt;
-        &lt;div id='file_list_container'&gt;
-          &lt;div class='file_list'&gt;
+    &lt;div id=&#039;container&#039;&gt;
+      &lt;div id=&#039;col_1&#039;&gt;
+        &lt;div id=&#039;file_list_container&#039;&gt;
+          &lt;div class=&#039;file_list&#039;&gt;
             &lt;?php
-              include('./lib/list_files.php');
+              include(&#039;./lib/list_files.php&#039;);
             ?&gt;
           &lt;/div&gt;
-          &lt;div class='new_file_container'&gt;
-            &lt;input value='new' id='new_file_name'&gt;&lt;a href='#new' role=&quot;create_file&quot; class='interface_action'&gt;+ New file&lt;/a&gt;
+          &lt;div class=&#039;new_file_container&#039;&gt;
+            &lt;input value=&#039;new&#039; id=&#039;new_file_name&#039;&gt;&lt;a href=&#039;#new&#039; role=&quot;create_file&quot; class=&#039;interface_action&#039;&gt;+ New file&lt;/a&gt;
           &lt;/div&gt;
 
         &lt;/div&gt;
-        &lt;div id='text_editor'&gt;
-          &lt;div id='menu_container'&gt;
-            &lt;ul&gt;&lt;li&gt;&lt;a href='#save' role='save_file' class='interface_action'&gt;Save&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+        &lt;div id=&#039;text_editor&#039;&gt;
+          &lt;div id=&#039;menu_container&#039;&gt;
+            &lt;ul&gt;&lt;li&gt;&lt;a href=&#039;#save&#039; role=&#039;save_file&#039; class=&#039;interface_action&#039;&gt;Save&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
           &lt;/div&gt;
-          &lt;div id='textarea' contenteditable data-file_path=&quot;new&quot; placeholder='#!'&gt;&lt;/div&gt;
+          &lt;div id=&#039;textarea&#039; contenteditable data-file_path=&quot;new&quot; placeholder=&#039;#!&#039;&gt;&lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div id='col_2'&gt;
-        &lt;div id='latest_message_container'&gt;
-          &lt;div id='latest_message'&gt;message&lt;/div&gt;
+      &lt;div id=&#039;col_2&#039;&gt;
+        &lt;div id=&#039;latest_message_container&#039;&gt;
+          &lt;div id=&#039;latest_message&#039;&gt;message&lt;/div&gt;
         &lt;/div&gt;
         &lt;hr&gt;
-        &lt;div id='meta_content_container'&gt;
+        &lt;div id=&#039;meta_content_container&#039;&gt;
           &lt;b&gt;Meta&lt;/b&gt;
-          &lt;div id='meta_content'&gt;&lt;/div&gt;
+          &lt;div id=&#039;meta_content&#039;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;hr&gt;
-        &lt;div id='search_container'&gt;
-          search: &lt;input type='text' value='' id='search_term'&gt;
-          &lt;div id='search_results_container'&gt;&lt;/div&gt;
+        &lt;div id=&#039;search_container&#039;&gt;
+          search: &lt;input type=&#039;text&#039; value=&#039;&#039; id=&#039;search_term&#039;&gt;
+          &lt;div id=&#039;search_results_container&#039;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;hr&gt;
-        &lt;div id='tags_container'&gt;
-          &lt;div id='tags_content' class='file_list'&gt;&lt;/div&gt;
+        &lt;div id=&#039;tags_container&#039;&gt;
+          &lt;div id=&#039;tags_content&#039; class=&#039;file_list&#039;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;hr&gt;
-        &lt;div id='links_container'&gt;
-          &lt;div id='links_content' class='file_list'&gt;&lt;/div&gt;
+        &lt;div id=&#039;links_container&#039;&gt;
+          &lt;div id=&#039;links_content&#039; class=&#039;file_list&#039;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;hr&gt;
       &lt;/div&gt;
